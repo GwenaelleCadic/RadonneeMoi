@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('newRando');
 });
+
+Route::get('newRando', 'RandoController@create');
+Route::post('newRando', 'RandoController@store');
+

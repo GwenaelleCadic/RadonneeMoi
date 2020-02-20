@@ -21,13 +21,13 @@
     <nav class="navbar navbar-expand-sm" style="background-color: #994f17;">
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a class="nav-link" href="#">Randonnées</a>
+      <a class="nav-link" href="#">Tracer un circuit</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Nouvelle randonnée</a>
+      <a class="nav-link" href="#">Les randonnées</a>
     </li>
   </ul>
-
 </nav>
+@yield('contenu')
     </body>
 </html>
