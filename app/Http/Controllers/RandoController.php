@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MarcheRequest;
+use App\Repositories\MarcheRepository;
+
 use Illuminate\Http\Request;
 
 class RandoController extends Controller
@@ -11,8 +14,13 @@ class RandoController extends Controller
 		return view('newRando');
 	}
 
-	public function postMarche(Request $request)
+	public function postMarche(
+		MarcheRequest $request,
+		MarcheRepositoryInterface $marcheRepository
+	)
 	{
-		return 'Le nom est ' . $request->input('nom'); 
+		$marcheRepository->save($request->input('marches'));
+
+		return view('rando_ok');
 	}
 }

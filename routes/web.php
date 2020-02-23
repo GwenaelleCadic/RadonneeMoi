@@ -15,6 +15,6 @@ Route::get('/', function () {
     return view('newRando');
 });
 
-Route::get('newRando', 'RandoController@create');
-Route::post('newRando', 'RandoController@store');
+Route::get('newRando', 'RandoController@getMarche');
+Route::post('newRando',['uses' => 'RandoController@postMarche','as'=> 'storeMarche']);
 
