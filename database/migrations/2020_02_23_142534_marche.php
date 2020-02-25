@@ -15,7 +15,7 @@ class Marche extends Migration
     {
         Schema::create('marches', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('nom',255);
+            $table->string('nom',255)->unique();
             $table->integer('createurId');
             $table->string('niveau',30);
             $table->time('temps');

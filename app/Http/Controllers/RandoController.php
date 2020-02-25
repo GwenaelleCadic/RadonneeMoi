@@ -2,25 +2,55 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\MarcheRequest;
-use App\Repositories\MarcheRepository;
-
 use Illuminate\Http\Request;
+
+use App\Http\Requests\MarcheRequest;
+//use App\Repositories\MarcheRepositoryInterface;
 
 class RandoController extends Controller
 {
-    public function getMarche()
-    {
+	protected $marcheRepository;
+	
+	public function __construct(MarcheRepository $marcheRepository)
+	{
+		$this->marcheRepository = $marcheRepository;
+	}
+
+
+	public function store(MarcheRequest $request)
+	{
+		$marche= $this->marcheRepository->store($request->all());
+		return view('rando_ok');
+	}
+	public function index()
+	{
 		return view('newRando');
 	}
 
-	public function postMarche(
-		MarcheRequest $request,
-		MarcheRepositoryInterface $marcheRepository
-	)
+	public function create()
 	{
-		$marcheRepository->save($request->input('marches'));
-
 		return view('rando_ok');
 	}
+	public function show()
+	{
+		return view('rando_ok');
+	}
+
+	public function edit($id)
+	{
+		return view('rando_ok');
+	}
+
+	public function update()
+	{
+		return view('rando_ok');
+	}
+	public function destroy($id)
+	{
+		return view('rando_ok');
+	}
+
+
+
+
 }

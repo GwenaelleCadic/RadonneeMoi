@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('newRando');
-});
 
-Route::get('newRando', 'RandoController@getMarche');
-Route::post('newRando',['uses' => 'RandoController@postMarche','as'=> 'storeMarche']);
+Route::resource('newRando', 'RandoController');
 
