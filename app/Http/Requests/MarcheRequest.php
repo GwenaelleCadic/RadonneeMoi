@@ -29,7 +29,6 @@ class MarcheRequest extends FormRequest
             'niveau'=>'required|max:30',
             'temps'=>'required',
             'region'=>'required|max:150',
-            'chemin'
         ];
     }
 }

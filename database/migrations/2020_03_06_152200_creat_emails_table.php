@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Marche extends Migration
+class CreatEmailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class Marche extends Migration
      */
     public function up()
     {
-        Schema::create('marches', function(Blueprint $table) {
+        Schema::create('emails', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('nom',255)->unique();
-            $table->integer('createurId');
-            $table->string('niveau',30);
-            $table->time('temps');
-            $table->string('region',150);
+            $table->string('email', 100);
         });
     }
 
@@ -30,6 +26,6 @@ class Marche extends Migration
      */
     public function down()
     {
-        Schema::drop('marches');
+        Schema::drop('emails');
     }
 }

@@ -13,4 +13,5 @@
 
 
 Route::resource('newRando', 'RandoController');
-
+Route::get('email', 'EmailController@getForm');
+Route::post('email', ['uses' => 'EmailController@postForm', 'as' => 'storeEmail']);

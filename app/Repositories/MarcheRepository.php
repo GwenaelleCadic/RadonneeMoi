@@ -15,6 +15,7 @@ class MarcheRepository// implements MarcheRepositoryInterface
 	}
 
 
+
 	private function save(Marche $marche,Array $inputs)
 	{
 		$marche->nom=$input['nom'];
@@ -22,7 +23,6 @@ class MarcheRepository// implements MarcheRepositoryInterface
 		$marche->createur=$input['createur!id'];
 		$marche->niveau=$input['niveau'];
 		$marche->region=$input['region'];
-		$marche->chemin=null;
 
 		$marche->save();
 	}
