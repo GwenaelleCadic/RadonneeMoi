@@ -11,6 +11,9 @@
 |
 */
 
+Route::get('test',function(){
+    return view('testMap');
+});
 
 Route::resource('newRando', 'RandoController');
 Route::get('email', 'EmailController@getForm');

@@ -48,3 +48,10 @@ html, body {
 .m-b-md {
     margin-bottom: 30px;
 }
+
+.map {
+    height: 400px;
+    width: 50%;
+    margin-left:auto;
+    margin-right:auto;
+  }

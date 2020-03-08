@@ -22,21 +22,22 @@ class RandoController extends Controller
 	{
 		//$marche= $this->marcheRepository->store($request->all());	
 		$this->validate($request, [
-			'createurId'=>'required',
+			//'createurId'=>'required',
             'nom'=>'required|max:255',
             'niveau'=>'required|max:30',
             //'temps'=>'required',
-			'region'=>'required|max:150',
+			//'region'=>'required|max:150',
 			'remarque' =>'required',
 		]);
 
 		//Create Marche
 		$marche= new Marche;
-		$post->createurId = $request->input('createurId');
-		$post->nom = $request->input('nom');
-		$post->niveau = $request->input('niveau');
-		$post->region = $request->input('region');
-		$post->remarque = $request->input('remarque');
+		//$marche->createurId = $request->input('createurId');
+		$marche->nom = $request->input('nom');
+		$marche->niveau = $request->input('niveau');
+		//$marche->region = $request->input('region');
+		$marche->remarque = $request->input('remarque');
+		$marche->save();
 
 		return view('rando_ok');
 	}
