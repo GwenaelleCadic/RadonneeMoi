@@ -6,13 +6,14 @@
     @if(count($marches)>0)
             @foreach($marches as $marche)
             <div class="well">
-                <p>
-                    {{$marche->nom}}
+            <p>
+                    <h3>{{$marche->nom}}</h3>
                     {{$marche->distance}}
                     {{$marche->denivele}}
                     {{$marche->remarque}}
                     {{$marche->niveau}}
-                </p>
+                    {{$marche->created_at}}
+                    </p>
             </div>
             @endforeach
         @else

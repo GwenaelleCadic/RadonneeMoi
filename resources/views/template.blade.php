@@ -26,7 +26,7 @@
         </style>
     </head>
     <body>
-    <nav class="navbar navbar-expand-sm" style="background-color: #994f17;">
+    <nav class="navbar navbar-expand-sm" style="background-color: #BC856D;">
   <ul class="navbar-nav">
     <li class="nav-item">
       <a class="nav-link" href="newRando/create">Tracer un circuit</a>

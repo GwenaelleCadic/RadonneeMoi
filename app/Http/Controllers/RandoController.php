@@ -27,6 +27,8 @@ class RandoController extends Controller
             'niveau'=>'required|max:30',
             //'temps'=>'required',
 			//'region'=>'required|max:150',
+			'denivele'=>'required',
+			'distance'=>'required',
 			'remarque' =>'required',
 		]);
 

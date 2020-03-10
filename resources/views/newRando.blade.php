@@ -6,8 +6,8 @@
         <div class="jumbotron">
         
             <div class="form-group">
-                    {!! Form::label('nom', 'Nom :')!!}
-                    {!! Form::text('nom') !!}
+                    <label for="nom"> Comment s'appelle cette marche? </label>
+                    <input type="text" class="form-control" id="nom" name="nom" placeholder="Ma jolie marche">
                 </div>
 
             <h2>Entrez le chemin</h2>
@@ -28,10 +28,9 @@
             </script>
 
             <div class="form-group">
-                {!! Form::label('niveau', 'Niveau :') !!}
-                {!! Form::text('niveau') !!}
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-dark active">
+            <label for="nom"> Quel est son niveau de difficulté ? </label>
+                <!--<div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-dark">
                         <input type="radio" name="niveau" id="noir" checked> Noir
                     </label>
                     <label class="btn btn-danger">
@@ -43,30 +42,45 @@
                     <label class="btn btn-success">
                         <input type="radio" name="niveau" id="vert"> Vert
                     </label>
-                </div>
-                <button type="button" class="btn btn-dark" value='Noir'>Noir</button>
-                <button type="button" class="btn btn-danger" value='Rouge'>Rouge</button>
-                <button type="button" class="btn btn-primary" value='Bleu'>Bleu</button>
-                <button type="button" class="btn btn-success" value='Vert'>Vert</button>
+                </div>-->
+                <input type="radio" id="noir" name="niveau" value="noir">
+                <label for="noir">Noir</label>
+
+                <input type="radio" id="rouge" name="niveau" value="rouge">
+                <label for="rouge">Rouge</label>
+
+                <input type="radio" id="bleu" name="niveau" value="bleu">
+                <label for="bleu">Bleu</label>
+
+                <input type="radio" id="vert" name="niveau" value="vert">
+                <label for="vert">Vert</label>
+
             </div>
 
-            <!--<div class="form-group">
+            <div class="form-group">
                 {!! Form::label('temps', 'Temps :')!!}
-                {!! Form::time('temps',) !!}
-            </div>-->
+                {!! Form::time('temps') !!}
+            </div>
+
+            <div class="form-group">
+                {!! Form::label('denivele', 'Dénivelé (en m) :')!!}
+                {!! Form::number('denivele', null, ['class' => 'form-control','step' => '1']) !!}
+
+                {!! Form::label('distance', 'Distance (en km) :')!!}
+                {!! Form::number('distance', null, ['step' => '0.1']) !!}
+            </div>
 
             <div class="form-group">
                 {!! Form::label('remarque', 'Remarque :')!!}
                 {!! Form::textarea('remarque') !!}
             </div>
 
-            <!-- viens du nom de la personne le rentrant
+            <!-- Pas pour le moment
             <div class="form-group">
                 {!! Form::label('createurId', 'Créateur :')!!}
                 {!! Form::number('createurId') !!}
-            </div>-->
-
-            <!-- Pas pour le moment
+            </div>
+            
             <div class="form-group">
                 {!! Form::label('region', 'Region :')!!}
                 {!! Form::text('region') !!}
