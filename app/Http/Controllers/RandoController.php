@@ -58,7 +58,8 @@ class RandoController extends Controller
 	}
 	public function show($id)
 	{
-		return Marche::find($id);
+		$marche=Marche::find($id);
+		return view('affichage')->with('marches',$marche);
 	}
 
 	public function edit($id)
