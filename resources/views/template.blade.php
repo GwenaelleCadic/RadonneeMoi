@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <link rel="stylsheet" href={{asset('css/style.css')}}>
         <title>Laravel</title>
 
         <!-- Fonts -->
@@ -26,16 +26,7 @@
         </style>
     </head>
     <body>
-    <nav class="navbar navbar-expand-sm" style="background-color: #BC856D;">
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" href="newRando/create">Tracer un circuit</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Les randonnées</a>
-    </li>
-  </ul>
-</nav>
+      @include('inc.navbar')
 @yield('contenu')
     </body>
 </html>

@@ -1,10 +1,12 @@
+
 @extends('template')
 
 @section('contenu')
 <p> Ceci est l'accueil </p>
-
-    @if(count($marches)>0)
-            @foreach($marches as $marche)
+<div class='container'>
+    @if(count($marches ?? '')>0)
+    <ul clas='list-group'>
+            @foreach($marches ?? '' as $marche)
             <div class="well">
                     <h3><a href="newRando/{{$marche->id}}">{{$marche->nom}}</a></h3>
                     {{$marche->distance}}
@@ -14,8 +16,9 @@
                     {{$marche->created_at}}
             </div>
             @endforeach
+        </ul>
         @else
         <p> No marche found</p>
         @endif
-
+</div>
 @endsection

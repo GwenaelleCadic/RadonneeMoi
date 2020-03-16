@@ -11,8 +11,10 @@
 |
 */
 
-Route::get('test',function(){
-    return view('testMap');
-});
 
 Route::resource('newRando', 'RandoController');
+Route::resource('user','UserController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

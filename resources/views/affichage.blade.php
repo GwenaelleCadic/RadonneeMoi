@@ -1,4 +1,4 @@
-@extends('template')
+@extends('layouts.app')
 
 @section('contenu')
         <h1> {{$marches->nom}} </h1>

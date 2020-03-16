@@ -28,7 +28,7 @@
             </script>
 
             <div class="form-group">
-            <label for="nom"> Quel est son niveau de difficulté ? </label>
+            <label for="niveau"> Quel est son niveau de difficulté ? </label>
                 <!--<div class="btn-group btn-group-toggle" data-toggle="buttons">
                     <label class="btn btn-dark">
                         <input type="radio" name="niveau" id="noir" checked> Noir
