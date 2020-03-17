@@ -29,7 +29,7 @@ class RandoController extends Controller
 			//'region'=>'required|max:150',
 			'denivele'=>'required',
 			'distance'=>'required',
-			'remarque' =>'required',
+			'description' =>'required',
 		]);
 
 		//Create Marche
@@ -38,7 +38,10 @@ class RandoController extends Controller
 		$marche->nom = $request->input('nom');
 		$marche->niveau = $request->input('niveau');
 		//$marche->region = $request->input('region');
-		$marche->remarque = $request->input('remarque');
+		$marche->description = $request->input('description');
+		$marche->denivele= $request->input('denivele');
+		$marche->distance= $request->input('distance');
+		$marche->temps= $request->input('temps');
 		$marche->save();
 
 		return view('rando_ok');

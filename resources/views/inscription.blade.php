@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('contenu')
+@section('content')
     <h1> Inscription </h1>
     {!! Form::open(['action' => 'UserController@store','method'=>'POST'])!!}
         <div class="jumbotron">

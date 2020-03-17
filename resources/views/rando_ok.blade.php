@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
-@section('contenu')
+@section('content')
 <p> Merci pour votre contribution</p>
 @endsection

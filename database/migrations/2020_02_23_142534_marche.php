@@ -19,10 +19,10 @@ class Marche extends Migration
             //$table->integer('createurId');
             $table->string('niveau',30);
             $table->time('temps',4)->default(0);
-            $table->string('remarque',1000);            
+            $table->string('description',1000);            
             //$table->string('region',150);
-            $table->float('denivele',5,0)->default(0);
-            $table->float('distance',5,1)->default(0);
+            $table->integer('denivele')->default(0);
+            $table->integer('distance')->default(0);
             $table->timestamps();
         });
     }

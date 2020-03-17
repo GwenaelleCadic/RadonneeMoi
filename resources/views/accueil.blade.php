@@ -1,7 +1,7 @@
 
-@extends('template')
+@extends('layouts.app')
 
-@section('contenu')
+@section('content')
 <p> Ceci est l'accueil </p>
 <div class='container'>
     @if(count($marches ?? '')>0)
@@ -11,7 +11,7 @@
                     <h3><a href="newRando/{{$marche->id}}">{{$marche->nom}}</a></h3>
                     {{$marche->distance}}
                     {{$marche->denivele}}
-                    {{$marche->remarque}}
+                    {{$marche->description}}
                     {{$marche->niveau}}
                     {{$marche->created_at}}
             </div>

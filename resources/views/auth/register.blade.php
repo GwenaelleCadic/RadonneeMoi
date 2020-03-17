@@ -12,12 +12,12 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                            <label for="pseudo" class="col-md-4 col-form-label text-md-right">{{ __('Pseudo') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="pseudo" type="text" class="form-control @error('pseudo') is-invalid @enderror" name="pseudo" value="{{ old('pseudo') }}" required autocomplete="pseudo" autofocus>
 
-                                @error('name')
+                                @error('pseudo')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -26,7 +26,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Addresse email') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
@@ -40,12 +40,12 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="mdp" class="col-md-4 col-form-label text-md-right">{{ __('Mot de passe:') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="mdp" type="password" class="form-control @error('mdp') is-invalid @enderror" name="mdp" required autocomplete="new-password">
 
-                                @error('password')
+                                @error('mdp')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -54,12 +54,43 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirmer le mot de passe') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
+                        <h2>Questions facultatives</h2>
+            <small>Ces questions ont pour but d'améliorer votre expérience sur notre plateforme, vous n'êtes pas obligés de les remplir, et sont accessibles à tout moment.</small>
+            
+            <div class="form-group">
+            <label for="niveau"> Quel est votre niveau ? </label>
+                <input type="radio" id="noir" name="niveau" value="noir">
+                <label for="noir">Noir</label>
+
+                <input type="radio" id="rouge" name="niveau" value="rouge">
+                <label for="rouge">Rouge</label>
+
+                <input type="radio" id="bleu" name="niveau" value="bleu">
+                <label for="bleu">Bleu</label>
+
+                <input type="radio" id="vert" name="niveau" value="vert" checked>
+                <label for="vert">Vert</label>
+
+            </div>
+            <div class="form-group">
+            <label for="groupe"> Aimez-vous marcher en groupe ? </label>
+                <input type="radio" id="true" name="groupe" data-value="true">
+                <label for="true">Oui</label>
+
+                <input type="radio" id="false" name="groupe" data-value="false" checked>
+                <label for="false">Non</label>
+            </div>
+
+            <div class="form-group">
+                    <label for="region"> Région de prédilection </label>
+                    <input type="text" class="form-control" id="region" name="region" placeholder="Région">
+            </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

@@ -1,6 +1,5 @@
-@extends('template')
-
-@section('contenu')
+@extends('layouts.app')
+@section('content')
     <h1> Création d'une nouvelle marche </h1>
     {!! Form::open(['action' => 'RandoController@store','method'=>'POST'])!!}
         <div class="jumbotron">
@@ -58,21 +57,21 @@
             </div>
 
             <div class="form-group">
-                {!! Form::label('temps', 'Temps :')!!}
-                {!! Form::time('temps') !!}
+                <label for="temps"> Temps: </label>
+                <input type="time" class="form-control" id="temps" name="temps">
             </div>
 
             <div class="form-group">
-                {!! Form::label('denivele', 'Dénivelé (en m) :')!!}
-                {!! Form::number('denivele', null, ['class' => 'form-control','step' => '1']) !!}
-
-                {!! Form::label('distance', 'Distance (en km) :')!!}
-                {!! Form::number('distance', null, ['step' => '0.1']) !!}
+                <label for="denivele"> Dénivelé(en m) </label>
+                <input type="int" class="form-control" id="denivele" name="denivele">
+                
+                <label for="distance"> Distance (en m) </label>
+                <input type="int" class="form-control" id="distance" name="distance">
             </div>
 
             <div class="form-group">
-                {!! Form::label('remarque', 'Remarque :')!!}
-                {!! Form::textarea('remarque') !!}
+                {!! Form::label('descritption', 'Description :')!!}
+                {!! Form::textarea('description') !!}
             </div>
 
             <!-- Pas pour le moment
