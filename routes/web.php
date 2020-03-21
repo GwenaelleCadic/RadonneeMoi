@@ -16,7 +16,6 @@ Route::get('/',function(){
 });
 Route::resource('newRando', 'RandoController');
 Route::resource('user','UserController');
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
