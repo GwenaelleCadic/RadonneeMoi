@@ -42,6 +42,7 @@ class RandoController extends Controller
 		$marche->denivele= $request->input('denivele');
 		$marche->distance= $request->input('distance');
 		$marche->temps= $request->input('temps');
+		$marche->createur=$request->input('createur');
 		$marche->save();
 
 		return view('rando_ok');
@@ -81,8 +82,4 @@ class RandoController extends Controller
 		->delete();
 		return view('rando_ok');
 	}
-
-
-
-
 }

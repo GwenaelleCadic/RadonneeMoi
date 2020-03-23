@@ -9,8 +9,9 @@
             @foreach($marches ?? '' as $marche)
             <div class="well">
                     <h3><a href="newRando/{{$marche->id}}">{{$marche->nom}}</a></h3>
-                    {{$marche->distance}}
-                    {{$marche->denivele}}
+                    <br>
+                    <hr/>{{$marche->distance}}
+                    <hr/>{{$marche->denivele}}
                     {{$marche->description}}
                     {{$marche->niveau}}
                     {{$marche->created_at}}

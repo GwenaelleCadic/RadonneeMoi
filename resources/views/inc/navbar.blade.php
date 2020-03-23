@@ -1,7 +1,8 @@
 <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color: #BC856D;">
   <div class="container">
       <a class="navbar-brand" href="{{ url('/') }}">
-          {{ config('app.name', 'Laravel') }}
+          {{-- {{ config('app.name', 'RandonneeMoi') }} --}}
+          RandonneeMoi
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
           <span class="navbar-toggler-icon"></span>
@@ -14,10 +15,18 @@
           </ul>
           
           <!-- Right Side Of Navbar -->
-          <ul class="navbar-nav ml-auto">
-              <a class="nav-link" href="newRando/">Accueil</a>
-              <a class="nav-link" href="newRando/create">Tracer un circuit</a>
-              <a class="nav-link" href="#">Les randonnées</a
+          @guest
+            @if (Route::has('register'))
+                <ul class="navbar-nav ml-auto">
+              <a class="nav-link" href="newRando/">Accueil</a>                
+              <a class="nav-link" href="#">Les randonnées</a>
+            @endif
+            @else
+             <ul class="navbar-nav ml-auto">
+                <a class="nav-link" href="newRando/">Accueil</a>  
+                <a class="nav-link" href="newRando/create">Tracer un circuit</a>  
+                <a class="nav-link" href="#">Les randonnées</a>
+        @endguest
               <!-- Authentication Links -->
               @guest
                   <li class="nav-item">

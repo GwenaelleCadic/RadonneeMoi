@@ -23,6 +23,7 @@ class Marche extends Migration
             //$table->string('region',150);
             $table->integer('denivele')->default(0);
             $table->integer('distance')->default(0);
+            $table->integer('createur');
             $table->timestamps();
         });
     }

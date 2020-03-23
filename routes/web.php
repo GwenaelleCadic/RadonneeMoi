@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/',function(){
-    return view('accueil');
-});
+Route::get('/','RandoController@index');
 Route::resource('newRando', 'RandoController');
 Route::resource('user','UserController');
 Auth::routes();

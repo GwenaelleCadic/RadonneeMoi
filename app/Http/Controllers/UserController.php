@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\User;
-
+use App\Marche;
 class UserController extends Controller
 {
     /**
@@ -50,7 +50,9 @@ class UserController extends Controller
         $user->region=$request->input('region');
 
         $user->save();
-        return view('accueil');
+
+        $marche=Marche::all();
+		return view('accueil')->with('marches',$marche);
 
     }
 

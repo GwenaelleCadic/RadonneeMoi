@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Marche;
 
 class HomeController extends Controller
 {
@@ -17,12 +18,13 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Lien vers la page propre de l'utilisateur
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
     {
-        return view('home');
+        $marches=Marche::all();
+        return view('home')->with('marches',$marches);
     }
 }

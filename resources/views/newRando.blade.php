@@ -87,21 +87,7 @@
 
             {!! Form::submit('Créer',['class' => 'btn btn-primary']) !!}
         </div>
-        
+        <input type="hidden" name="createur" id="createur" value={{ Auth::user()->id }} />
+
     {!! Form::close() !!}
-    <!--<br>
-    <div class="col-sm-offset-4 col-sm-4">
-		<div class="panel panel-info">
-			<div class="panel-heading">Tentons....</div>
-			<div class="panel-body"> 
-				{!! Form::open(['route' => 'newRando.store']) !!}
-					<div class="form-group {!! $errors->has('email') ? 'has-error' : '' !!}">
-                    {!! Form::label('nom', 'Nom :')!!}
-        {!! Form::text('nom') !!}
-					</div>
-					{!! Form::submit('Envoyer !', ['class' => 'btn btn-info pull-right']) !!}
-				{!! Form::close() !!}
-			</div>
-		</div>
-	</div>-->
 @endsection
