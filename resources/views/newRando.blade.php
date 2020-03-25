@@ -28,7 +28,7 @@
 
             <div class="form-group">
             <label for="niveau"> Quel est son niveau de difficulté ? </label>
-                <!--<div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
                     <label class="btn btn-dark">
                         <input type="radio" name="niveau" id="noir" checked> Noir
                     </label>
@@ -41,49 +41,30 @@
                     <label class="btn btn-success">
                         <input type="radio" name="niveau" id="vert"> Vert
                     </label>
-                </div>-->
-                <input type="radio" id="noir" name="niveau" value="noir">
-                <label for="noir">Noir</label>
-
-                <input type="radio" id="rouge" name="niveau" value="rouge">
-                <label for="rouge">Rouge</label>
-
-                <input type="radio" id="bleu" name="niveau" value="bleu">
-                <label for="bleu">Bleu</label>
-
-                <input type="radio" id="vert" name="niveau" value="vert">
-                <label for="vert">Vert</label>
-
+                </div>
             </div>
 
             <div class="form-group">
+                {{-- On ajoute un temps de marche --}}              
                 <label for="temps"> Temps: </label>
                 <input type="time" class="form-control" id="temps" name="temps">
             </div>
 
             <div class="form-group">
+                {{-- On ajoute un dénivelé --}}              
                 <label for="denivele"> Dénivelé(en m) </label>
                 <input type="int" class="form-control" id="denivele" name="denivele">
-                
+            
+                {{-- On ajoute une distance --}}              
                 <label for="distance"> Distance (en m) </label>
                 <input type="int" class="form-control" id="distance" name="distance">
             </div>
 
-            <div class="form-group">
-                {!! Form::label('descritption', 'Description :')!!}
-                {!! Form::textarea('description') !!}
+            {{-- On ajoute une description --}}
+            <div class="form-group"> 
+                <label for="description"> Description: </label>
+                <input type="textarea" class="form-control" id="description" name="description">
             </div>
-
-            <!-- Pas pour le moment
-            <div class="form-group">
-                {!! Form::label('createurId', 'Créateur :')!!}
-                {!! Form::number('createurId') !!}
-            </div>
-            
-            <div class="form-group">
-                {!! Form::label('region', 'Region :')!!}
-                {!! Form::text('region') !!}
-            </div>-->
 
             {!! Form::submit('Créer',['class' => 'btn btn-primary']) !!}
         </div>

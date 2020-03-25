@@ -20,24 +20,22 @@ class RandoController extends Controller
 
 	public function store(Request $request)
 	{
-		//$marche= $this->marcheRepository->store($request->all());	
+		//On ne permet l'enregistrement que si toutes les données sont entrées
 		$this->validate($request, [
-			//'createurId'=>'required',
             'nom'=>'required|max:255',
             'niveau'=>'required|max:30',
-            //'temps'=>'required',
-			//'region'=>'required|max:150',
+            'temps'=>'required',
+			'region'=>'required',
 			'denivele'=>'required',
 			'distance'=>'required',
 			'description' =>'required',
 		]);
 
-		//Create Marche
+		//Creation de la Marche à partir des données entrée
 		$marche= new Marche;
-		//$marche->createurId = $request->input('createurId');
 		$marche->nom = $request->input('nom');
 		$marche->niveau = $request->input('niveau');
-		//$marche->region = $request->input('region');
+		$marche->region = $request->input('region');
 		$marche->description = $request->input('description');
 		$marche->denivele= $request->input('denivele');
 		$marche->distance= $request->input('distance');

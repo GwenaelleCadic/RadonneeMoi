@@ -16,11 +16,10 @@ class Marche extends Migration
         Schema::create('marches', function(Blueprint $table) {
             $table->increments('id');
             $table->string('nom',255)->unique();
-            //$table->integer('createurId');
             $table->string('niveau',30);
             $table->time('temps',4)->default(0);
             $table->string('description',1000);            
-            //$table->string('region',150);
+            $table->string('region')->default('null');
             $table->integer('denivele')->default(0);
             $table->integer('distance')->default(0);
             $table->integer('createur');

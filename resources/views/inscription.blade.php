@@ -36,12 +36,13 @@
                 <label for="vert">Vert</label>
 
             </div>
+            Maybe
             <div class="form-group">
-            <label for="groupe"> Aimez-vous marcher en groupe ? </label>
-                <input type="radio" id="true" name="groupe" data-value="true">
+            <label for="groupe"> Aimez-vous marcher en groupe ??? </label>
+                <input type="radio" id="true" name="groupe" value="true">
                 <label for="true">Oui</label>
 
-                <input type="radio" id="false" name="groupe" data-value="false" checked>
+                <input type="radio" id="false" name="groupe" value="false">
                 <label for="false">Non</label>
             </div>
 

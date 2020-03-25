@@ -55,3 +55,51 @@ html, body {
     margin-left:auto;
     margin-right:auto;
   }
+.titreBarre
+{
+    color:#2d6637;
+    margin-top: 4px;
+    margin-left:20px;
+}
+.titreAccueil
+{
+    color:#BC856D;
+    text-align: center;
+    margin-bottom: 50px;
+}
+.marche
+{
+    border-style:solid;
+    border-width: 1px;
+    border-color: black;
+    width:200px;
+    margin-left: 10px;
+}
+
+.marron
+{
+    color:#BC856D;
+}
+.vert
+{
+    color: #2d6637;
+}
+h3
+{
+    text-align: center;
+    height: 55px;
+}
+
+.listeAccueil
+{
+  display:flex;  
+  list-style:none;
+
+}
+.map
+{
+    height: 400px;
+    width: 50%;
+    margin-left:auto;
+    margin-right:auto;
+}

@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color: #BC856D;">
   <div class="container">
-      <a class="navbar-brand" href="{{ url('/') }}">
-          {{-- {{ config('app.name', 'RandonneeMoi') }} --}}
-          RandonneeMoi
+      <a class="navbar-brand" href="{{ url('/newRando') }}">
+          {{-- {{ config('app.name', 'RandonneMoi') }} --}}
+          RandonnezMoi
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
           <span class="navbar-toggler-icon"></span>
@@ -18,28 +18,28 @@
           @guest
             @if (Route::has('register'))
                 <ul class="navbar-nav ml-auto">
-              <a class="nav-link" href="newRando/">Accueil</a>                
-              <a class="nav-link" href="#">Les randonnées</a>
+              <a class="nav-link" style="color: #2d6637;" href="{{ asset('newRando/') }}">Accueil</a>                
+              <a class="nav-link" style="color: #2d6637;" href="#">Les randonnées</a>
             @endif
             @else
              <ul class="navbar-nav ml-auto">
-                <a class="nav-link" href="newRando/">Accueil</a>  
-                <a class="nav-link" href="newRando/create">Tracer un circuit</a>  
-                <a class="nav-link" href="#">Les randonnées</a>
+                <a class="nav-link" style="color: #2d6637;" href="{{ asset('newRando/') }}">Accueil</a>  
+                <a class="nav-link" style="color: #2d6637;" href="{{ asset('newRando/create') }}">Tracer un circuit</a>  
+                <a class="nav-link" style="color: #2d6637;" href="#">Les randonnées</a>
         @endguest
               <!-- Authentication Links -->
               @guest
                   <li class="nav-item">
-                      <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                      <a class="nav-link" style="color: #2d6637;" href="{{ route('login') }}">{{ __('Login') }}</a>
                   </li>
                   @if (Route::has('register'))
                       <li class="nav-item">
-                          <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                          <a class="nav-link" style="color: #2d6637;" href="{{ route('register') }}">{{ __('Register') }}</a>
                       </li>
                   @endif
               @else
                   <li class="nav-item dropdown">
-                      <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                      <a id="navbarDropdown" class="titreBarre dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                           {{ Auth::user()->name }} <span class="caret"></span>
                       </a>
 
