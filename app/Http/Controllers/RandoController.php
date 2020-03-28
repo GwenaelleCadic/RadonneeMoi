@@ -75,9 +75,11 @@ class RandoController extends Controller
 	}
 	public function destroy($id)
 	{
-		$marche=DB::table('marches')
+		$$marche=Marche::all()
 		->where('id',$id)
 		->delete();
-		return view('rando_ok');
+
+		$transmettre=Marche::all();
+		return view('accueil')->with('marches',$transmettre);
 	}
 }

@@ -3,6 +3,24 @@
 @section('content')
         <h1> {{$marches->nom}} </h1>
         <small>Date du {{$marches->created_at}}</small>
+        {{-- On donne la possibilité au créateur de modifier et supprimer la marche --}}
+        @guest
+                @if (Route::has('register'))        
+                @endif
+                @else
+                        @if($marches->createur==Auth::user()->id)
+                        <form action="{{ URL::route('newRando.destroy', $marches->id) }}" method="POST">
+                                {{ method_field('DELETE') }}
+                                {{ csrf_field() }}
+                                <div type="submit" class='btn btn-danger' onclick="return confirm('Are you sure?')"> Supprimer</div>
+                        </form>
+                                
+                                <div class='btn btn-primary'>Modifier</div>
+                        @endif
+                
+        @endguest
+
+                
         <div>
                 {{$marches->description}}
         </div>
