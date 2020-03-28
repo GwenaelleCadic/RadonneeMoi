@@ -25,8 +25,22 @@
                     })
                 });
             </script>
-
             <div class="form-group">
+                <label for="region"> Et dans quelle région se trouve cette beauté? </label>
+                <input type="text" class="form-control" id="region" name="region" placeholder="Chez moi">
+            </div>
+        <div class="form-group">
+            <label for="niveau"> Quel est son niveau de difficulté ? </label>
+                <input type="radio" id="noir" name="niveau" value="noir">
+                    <label for="noir">Noir</label>
+                <input type="radio" id="rouge" name="niveau" value="rouge">
+                    <label for="rouge">Rouge</label>
+                <input type="radio" id="bleu" name="niveau" value="bleu">
+                    <label for="bleu">Bleu</label>
+                <input type="radio" id="vert" name="niveau" value="vert" checked>
+                    <label for="vert">Vert</label>
+            </div>
+            {{-- <div class="form-group">
             <label for="niveau"> Quel est son niveau de difficulté ? </label>
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                     <label class="btn btn-dark">
@@ -42,7 +56,7 @@
                         <input type="radio" name="niveau" id="vert"> Vert
                     </label>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="form-group">
                 {{-- On ajoute un temps de marche --}}              
@@ -65,10 +79,11 @@
                 <label for="description"> Description: </label>
                 <input type="textarea" class="form-control" id="description" name="description">
             </div>
-
+                    
+        <input type="hidden" name="createur" id="createur" value={{ Auth::user()->id }} />     
             {!! Form::submit('Créer',['class' => 'btn btn-primary']) !!}
-        </div>
-        <input type="hidden" name="createur" id="createur" value={{ Auth::user()->id }} />
+            {{-- On passe l'id du créateur en variable --}}
+</div>
 
     {!! Form::close() !!}
 @endsection

@@ -80,10 +80,10 @@
                         </div>
                         <div class="form-group">
                             <label for="groupe"> Aimez-vous marcher en groupe ? </label>
-                                <input type="radio" id="true" name="groupe" data-value="true">
+                                <input type="radio" id="true" name="groupe" value="true">
                                 <label for="true">Oui</label>
                 
-                                <input type="radio" id="false" name="groupe" data-value="false" checked>
+                                <input type="radio" id="false" name="groupe" value="false" checked>
                                 <label for="false">Non</label>
                             </div>
                             

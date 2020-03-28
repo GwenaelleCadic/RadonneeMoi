@@ -31,7 +31,11 @@
                     </div>
                     Marches proposées :
                     <div class="jumbotron">
-                        là aussi
+                        @foreach ($marches as $marche)
+                            @if($marche->createur==Auth::user()->id)
+                                {{$marche->nom}}
+                            @endif                            
+                        @endforeach
                     </div>
                 </div>
             </div>
