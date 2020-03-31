@@ -3,18 +3,26 @@
 
 @section('content')
 <h1 class="titreAccueil"> Voici ce que nous avons à vous proposer </h1>
-<div class='container'>
+<div>
     @if(count($marches ?? '')>0)
-    <ul class="listeAccueil">
+    {{-- <ul class="listeAccueil"> --}}<ul>
             @foreach($marches ?? '' as $marche)
             <div class="marche">
                     <h3> <a href="newRando/{{$marche->id}}" class="vert">{{$marche->nom}}</a></h3>
-                    <hr/><strong class="marron">Distance:</strong> {{$marche->distance}} m<br>
-                    <strong class="marron">Dénivelé:</strong> {{$marche->denivele}}m<br>
-                    <strong class="marron">Niveau:</strong> {{$marche->niveau}}<br>
-                    <strong class="marron">Région:</strong> {{$marche->region}}
-                    <hr/>                    
-                    {{$marche->created_at}}
+                    <hr/>
+                    <div class="presentation">
+                        <a class="affichageInfoMarche"><strong class="marron">Distance:</strong> {{$marche->distance}} m</a>
+                        <a class="affichageInfoMarche"><strong class="marron">Dénivelé:</strong> {{$marche->denivele}}m</a>
+                        <a class="affichageInfoMarche"><strong class="marron">Niveau:</strong> {{$marche->niveau}}</a>
+                        <a class="affichageInfoMarche"><strong class="marron">Région:</strong> {{$marche->region}}</a>
+                    </div>
+                    <div class="descrMarche">
+                            {{$marche->description}}
+                        </div>
+                    <hr/>                 
+                        <small> créé le :{{$marche->created_at}}  </small>
+                        <small> modifié le: {{$marche->updated_at}}</small>
+                    </div>
             </div>
             @endforeach
         </ul>

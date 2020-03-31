@@ -11,6 +11,11 @@ html, body {
     height: 100vh;
 }
 
+ul {
+    padding: 0;
+    list-style-type: none;
+}
+
 .flex-center {
     align-items: center;
     display: flex;
@@ -69,11 +74,11 @@ html, body {
 }
 .marche
 {
-    border-style:solid;
-    border-width: 1px;
-    border-color: black;
-    width:200px;
-    margin-left: 10px;
+    background-color: #ede6e4;
+    flex: 1;
+    display: block;
+    width: 100%;
+    margin-top:10px;
 }
 
 .marron
@@ -90,12 +95,6 @@ h3
     height: 55px;
 }
 
-.listeAccueil
-{
-  display:flex;  
-  list-style:none;
-
-}
 .map
 {
     height: 400px;
@@ -111,4 +110,123 @@ h3
     float:left;
     border-radius:50%;
     margin-right: 25px;
+}
+
+.presentation
+{
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.affichageInfoMarche
+{
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.fond
+{
+    background-color: #ede6e4;
+    padding:30px;
+}
+.descrMarche
+{
+    border: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: grey;
+    background-color: white;
+    margin: 20px;
+    padding: 10px;
+}
+
+.descrMarche2{
+    border: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: grey;
+    background-color: white;
+    padding:10px;
+}
+
+.titreMarche{
+    color: #2d6637;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.contenue
+{
+    position: relative;
+    display:flex;
+    justify-content: center;
+    bottom:20px;
+}
+
+.titreContenue
+{
+    position: static;
+    padding-top:10px;
+    margin-left:20px;
+    color:#2d6637;
+}
+
+.btnMarches{
+    position: relative;
+    display:flex;
+    flex-direction: row-reverse;
+    bottom:30px;
+}
+
+.commentaire{
+    background-color: #bee6c4;
+    margin-left: 5%;
+    width: 70%;
+    border-radius: 10px;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.connexionBox
+{
+    border: solid;
+    border-width: 1px;
+    margin-top: 10%;
+    border-radius: 5px;
+    border-color: #2d6637;
+}
+
+.connexionTitre
+{
+    padding: .75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: #ede6e4;
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    color:#2d6637;
+}
+
+.connexionBouton{
+    
+    display: inline-block;
+    font-weight: 400;
+    color: #212529;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    color: #2d6637;
+    background-color: #ede6e4;
+    border-color: #2d6637;
 }
