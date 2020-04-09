@@ -14,4 +14,8 @@ class Marche extends Model
     public function comments(){
         return $this->hasMany(Comment::class);
     }
+
+    public function marcheFlashs(){
+        return $this->hasMany(MarcheFlash::class);
+    }
 }

@@ -8,7 +8,7 @@
     {{-- <ul class="listeAccueil"> --}}<ul>
             @foreach($marches ?? '' as $marche)
             <div class="marche">
-                    <h3> <a href="newRando/{{$marche->id}}" class="vert">{{$marche->nom}}</a></h3>
+                    <h3> <a href="rando/{{$marche->id}}" class="vert">{{$marche->nom}}</a></h3>
                     <hr/>
                     <div class="presentation">
                         <a class="affichageInfoMarche"><strong class="marron">Distance:</strong> {{$marche->distance}} m</a>
@@ -22,6 +22,8 @@
                     <hr/>                 
                         <small> créé le :{{$marche->created_at}}  </small>
                         <small> modifié le: {{$marche->updated_at}}</small>
+                        {{-- attend une nouvelle migration:
+                            par {{$marche->user->name}} --}}
                     </div>
             </div>
             @endforeach

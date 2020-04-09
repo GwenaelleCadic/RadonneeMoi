@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Marche;
+use App\MarcheFlash;
 
 class HomeController extends Controller
 {
@@ -25,6 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         $marches=Marche::all();
-        return view('home')->with('marches',$marches);
+        $marcheFlash=MarcheFlash::all();
+        return view('home')->with('marches',$marches)->with('marcheFlashs',$marcheFlash);
     }
 }

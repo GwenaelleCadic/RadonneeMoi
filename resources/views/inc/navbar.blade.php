@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color: #BC856D;">
   <div class="container">
-      <a class="navbar-brand" href="{{ url('/newRando') }}">
+      <a class="navbar-brand" href="{{ url('/rando') }}">
           {{-- {{ config('app.name', 'RandonneMoi') }} --}}
           RandonnezMoi
       </a>
@@ -18,14 +18,15 @@
           @guest
             @if (Route::has('register'))
                 <ul class="navbar-nav ml-auto">
-              <a class="nav-link" style="color: #2d6637;" href="{{ asset('newRando/') }}">Accueil</a>                
-              <a class="nav-link" style="color: #2d6637;" href="#">Les randonnées</a>
+              <a class="nav-link" style="color: #2d6637;" href="{{ asset('rando/') }}">Accueil</a>                
+              <a class="nav-link" style="color: #2d6637;" href="{{asset('search')}}">Les randonnées</a>
             @endif
             @else
              <ul class="navbar-nav ml-auto">
-                <a class="nav-link" style="color: #2d6637;" href="{{ asset('newRando/') }}">Accueil</a>  
-                <a class="nav-link" style="color: #2d6637;" href="{{ asset('newRando/create') }}">Tracer un circuit</a>  
-                <a class="nav-link" style="color: #2d6637;" href="#">Les randonnées</a>
+                <a class="nav-link" style="color: #2d6637;" href="{{ asset('rando/') }}">Accueil</a>  
+                <a class="nav-link" style="color: #2d6637;" href="{{ asset('rando/create') }}">Tracer un circuit</a>  
+                <a class="nav-link" style="color: #2d6637;" href="{{asset('search')}}">Les randonnées</a>
+                <a class="nav-link" style="color: #2d6637;" href="{{asset('events')}}">Les événements</a>
         @endguest
               <!-- Authentication Links -->
               @guest
@@ -46,7 +47,7 @@
                     </a>
 
                       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="{{ asset('profile') }}">
+                          <a class="dropdown-item" href="{{ asset('home') }}">
                              Profil
                           </a>
                           <a class="dropdown-item" href="{{ route('logout') }}"

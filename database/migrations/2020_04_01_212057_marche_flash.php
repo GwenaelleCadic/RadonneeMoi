@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Historique extends Migration
+class MarcheFlash extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,16 @@ class Historique extends Migration
      */
     public function up()
     {
-        Schema::create('historiques', function(Blueprint $table) {
-            $table->increments('id');
+        Schema::create('marcheflashs', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->integer("user_id")->unsigned();
             $table->integer("marche_id")->unsigned();
+            $table->dateTime("rdv");
+            $table->string('description');
+            $table->timestamps();
         });
 
-        Schema::table('historiques',function($table){
+        Schema::table('marcheflashs',function($table){
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('marche_id')->references('id')->on('marches')->onDelete('cascade');
         });
@@ -32,6 +35,6 @@ class Historique extends Migration
      */
     public function down()
     {
-        Schema::drop('historiques');
+        Schema::dropIfExists('marcheflashs');
     }
 }

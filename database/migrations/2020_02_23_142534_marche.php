@@ -18,12 +18,16 @@ class Marche extends Migration
             $table->string('nom',255)->unique();
             $table->string('niveau',30);
             $table->time('temps',4)->default(0);
-            $table->string('description',1000);            
+            $table->string('description');            
             $table->string('region')->default('null');
             $table->integer('denivele')->default(0);
             $table->integer('distance')->default(0);
-            $table->integer('createur');
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
+        });
+
+        Schema::table('marches',function(Blueprint $table){
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

@@ -13,11 +13,14 @@
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/','RandoController@index');
-Route::resource('newRando','RandoController');
+Route::resource('rando','RandoController');
 Route::resource('user','UserController');
 Auth::routes();
+Route::get('search','RandoController@search');
+Route::post('search',['uses'=>'RandoController@searchRando','as'=>'rando.search']);
 
-Route::get('profile','UserController@profile');
-Route::post('profile',['uses' => 'UserController@update_avatar', 'as' =>'profil.update']);
+Route::post('home',['uses' => 'UserController@update_avatar', 'as' =>'profil.update']);
+Route::get('events','EventsController@index');
 //Comments
 Route::post('comments',['uses'=>'CommentsController@store', 'as'=>'comments.store']);
+Route::post('events',['uses' => 'EventsController@store', 'as' => 'events.store']);

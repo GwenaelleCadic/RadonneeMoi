@@ -17,24 +17,32 @@
                 </div>
         </div>
 
-        <small>Date du {{$marches->created_at}},   Modifié le {{$marches->updated_at}}</small>
+        <small>Date du {{$marches->created_at}},   Modifié le {{$marches->updated_at}}</small>    
         
+
         {{-- On donne la possibilité au créateur de modifier et supprimer la marche --}}
         @guest
                 @if (Route::has('register'))        
                 @endif
-                @else
+                @else                     
+                <div class="details" style="display:none">
+                        {!! Form::open(['route' => ['events.store'],'method'=>'POST'])!!}
+                                 <input type='hidden' name='user_id' id='user_id' value={{ Auth::user()->id }} />
+                                 <input type='hidden' name='marche_id' id='marche_id' value={{$marches->id}} />
+                                 <input type='datetime-local' name='rdv' id='rdv'>
+                                 {!! Form::submit('Créer',['class' => 'btn btn-primary']) !!}
+                         {!! Form::close() !!}</div>
+                 <a id="more" href="#" onclick="$('.details').slideToggle(function(){$('#more').html($('.details').is(':visible')?'Annuler':'Créer un événement');});">Créer un événement</a>
+           
                         @if($marches->createur==Auth::user()->id)
-                        <div class='btnMarches'>
-                                <form action="{{ URL::route('newRando.destroy', $marches->id) }}" method="POST">
-                                        {{ method_field('DELETE') }}
-                                        {{ csrf_field() }}
-                                        <div type="submit" class='btn btn-danger' onclick="return confirm('Are you sure?')"> Supprimer</div>
-                                </form>                                       
-                                <div class='btn btn-primary'>Modifier</div>
-                        </div>
-                        @endif
-                
+                                <div class='btnMarches'>
+                                        <form action="{{ URL::route('rando.destroy', $marches->id) }}" method="POST">
+                                                {{ method_field('DELETE') }}
+                                                {{ csrf_field() }}
+                                                <div type="submit" class='btn btn-danger' onclick="return confirm('Are you sure?')"> Supprimer</div>
+                                        </form>  
+                                </div>
+                        @endif                
         @endguest
         
         {{-- Espace commentaires --}}

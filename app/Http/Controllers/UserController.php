@@ -11,10 +11,6 @@ use Auth;
 class UserController extends Controller
 {
 
-    public function profile()
-    {
-        return view('profile');
-    }
 
     //Gestion de l'ajout d'une photo de profil
     public function update_avatar(Request $request)
@@ -29,7 +25,10 @@ class UserController extends Controller
             $user->avatar = $filename;
             $user->save();
         }
-        return view('profile');
+
+
+        $marche=Marche::all();
+		return view('home')->with('marches',$marche);
     }
     /**
      * Display a listing of the resource.

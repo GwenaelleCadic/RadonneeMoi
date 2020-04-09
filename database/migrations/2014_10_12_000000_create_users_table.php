@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('region',150)->default('inconnu');
             $table->string('groupe',5)->default('false');
             $table->string('avatar')->default('default.jpg');
+            $table->string('description');
             $table->rememberToken();
             $table->timestamps();
         });

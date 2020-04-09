@@ -54,6 +54,18 @@ class RandoController extends Controller
 		return view('accueil')->with('marches',$marche);
 	}
 
+	public function searchRando(Request $request)
+	{
+		$marche= Marche::where($request->type,'LIKE','%'.$request->search.'%')->get();
+		return view('search')->with('marches',$marche);
+	}
+
+	public function search()
+	{
+		$marche=[];
+		return view('search')->with('marches',$marche);
+	}
+
 	public function create()
 	{
 		return view('newRando');
