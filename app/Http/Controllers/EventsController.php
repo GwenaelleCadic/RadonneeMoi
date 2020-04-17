@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\MarcheFlash;
+use App\Event;
 use App\Marche;
 use App\User;
-
+// use Carbon\Carbon;
 class EventsController extends Controller
 {
     /**
@@ -16,8 +16,8 @@ class EventsController extends Controller
      */
     public function index()
     {
-        $marches = MarcheFlash::all();
-        return view('events')->with('marches',$marches);
+        $events = Event::all()->sortBy('rdv');
+        return view('events')->with('events',$events);
     }
 
     /**
@@ -42,10 +42,11 @@ class EventsController extends Controller
     ]);
 
     //Creation de la Marche à partir des données entrée
-    $flash= new MarcheFlash;
+    $flash= new Event;
     $marche = Marche::find($request->marche_id);
     $user= User::find($request->user_id);
     $flash->rdv=$request->rdv;
+    $flash->description=$request->description;
 
     $flash->marche()->associate($marche);
     $flash->user()->associate($user);

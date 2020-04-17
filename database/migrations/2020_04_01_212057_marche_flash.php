@@ -13,7 +13,7 @@ class MarcheFlash extends Migration
      */
     public function up()
     {
-        Schema::create('marcheflashs', function (Blueprint $table) {
+        Schema::create('events', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer("user_id")->unsigned();
             $table->integer("marche_id")->unsigned();
@@ -22,7 +22,7 @@ class MarcheFlash extends Migration
             $table->timestamps();
         });
 
-        Schema::table('marcheflashs',function($table){
+        Schema::table('events',function($table){
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('marche_id')->references('id')->on('marches')->onDelete('cascade');
         });
@@ -35,6 +35,6 @@ class MarcheFlash extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('marcheflashs');
+        Schema::dropIfExists('events');
     }
 }

@@ -8,26 +8,51 @@
 
                <div class="input-group custom-search-form">
                    <input type="text" class="form-control" name="search" placeholder="Search...">
-                   <span class="input-group-btn">
+                    <span class="input-group-btn">
+                        <button type="submit"><i class="fa fa-search"> Chercher</i></button>
+                    </span>
+               </div>
+        Complément
+        <div class="presentation">
+            <label for="niveau"> Le niveau recherché? </label>
+            <div class="button-wrap">
+                <input type="radio" name="niveau" id="bnoir" class="hidden radio-label" value='noir'>
+                <label for="bnoir" class="button-label bnoir">Noir</label>
 
-       <button class="btn btn-default-sm" type="submit">
-           <i class="fa fa-search">i
-       </button>
+                <input type="radio" name="niveau" id="brouge" class="hidden radio-label" value='rouge'>
+                <label for="brouge" class="button-label brouge" >Rouge</label>
 
-       <div class="form-group">
-            <input type="radio" id="nom" name="type" value="nom" checked>
-            <label for="nom">Nom</label>
+                <input type="radio" name="niveau" id="bbleu" class="hidden radio-label" value='bleu'>
+                <label for="bbleu" class="button-label bbleu">Bleu</label>
 
-            <input type="radio" id="niveau" name="type" value="niveau">
-            <label for="niveau">Niveau</label>
+                <input type="radio" name="niveau" id="bvert" class="hidden radio-label" value='vert'>
+                <label for="bvert" class="button-label bvert">Vert</label>
 
-            <input type="radio" id="region" name="type" value="region">
-            <label for="region">Région</label>
-
-            <input type="radio" id="createur" name="type" value="createur">
-            <label for="createur">Auteur</label>
+                <input type='radio' name='niveau' id='bnone' class="hidden radio-label" value='none' checked>
+                <label for='bnone' class="button-label bnone">Peu importe</label>
+            </div> 
+            <label for="temps"> Le temps? </label>
+            <select id="temps">
+                <option value="dj">Demi-journée</option>
+                <option value="j">Journée</option>
+                <option value="none" selected>Peu importe</option>
+            </select>
         </div>
-        </span>
+
+        {{-- <div class="form-group row">
+            <label for="temps"> La région </label>
+            <div class="button-wrap">
+                <input type="radio" name="temps" id="bnoir" class="hidden radio-label" value='dj'>
+                <label for="bnoir" class="button-label bnoir">Demi-journée</label>
+
+                <input type="radio" name="temps" id="brouge" class="hidden radio-label" value='j'>
+                <label for="brouge" class="button-label brouge" >Journée</label>
+
+                <input type='radio' name='temps' id='none' value='none' checked>
+                <label for='none'>Peu importe</label>
+            </div> 
+        </div> --}}
+
        {!! Form::close() !!}
        <br/>
     </div>
@@ -38,19 +63,18 @@
                     <h3> <a href="rando/{{$marche->id}}" class="vert">{{$marche->nom}}</a></h3>
                     <hr/>
                     <div class="presentation">
-                        <a class="affichageInfoMarche"><strong class="marron">Distance:</strong> {{$marche->distance}} m</a>
-                        <a class="affichageInfoMarche"><strong class="marron">Dénivelé:</strong> {{$marche->denivele}}m</a>
-                        <a class="affichageInfoMarche"><strong class="marron">Niveau:</strong> {{$marche->niveau}}</a>
-                        <a class="affichageInfoMarche"><strong class="marron">Région:</strong> {{$marche->region}}</a>
+                        <a class="affichageInfoMarche"><strong class="marron">Distance:</strong> {!!$marche->distance!!} m</a>
+                        <a class="affichageInfoMarche"><strong class="marron">Dénivelé:</strong> {!!$marche->denivele!!}m</a>
+                        <a class="affichageInfoMarche"><strong class="marron">Niveau:</strong> {!!$marche->niveau!!}</a>
+                        <a class="affichageInfoMarche"><strong class="marron">Région:</strong> {!!$marche->region!!}</a>
                     </div>
                     <div class="descrMarche">
-                            {{$marche->description}}
+                            {!!$marche->description!!}
                         </div>
                     <hr/>                 
-                        <small> créé le :{{$marche->created_at}}  </small>
-                        <small> modifié le: {{$marche->updated_at}}</small>
-                        {{-- attend une nouvelle migration:
-                            par {{$marche->user->name}} --}}
+                        <small> créé le :{!!$marche->created_at!!}  </small>
+                        <small> modifié le: {!!$marche->updated_at!!}</small>
+                            par {!!$marche->user->name!!}
                     </div>
             </div>
                     

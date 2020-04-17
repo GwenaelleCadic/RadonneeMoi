@@ -18,6 +18,7 @@ class Marche extends Migration
             $table->string('nom',255)->unique();
             $table->string('niveau',30);
             $table->time('temps',4)->default(0);
+            $table->string('type');
             $table->string('description');            
             $table->string('region')->default('null');
             $table->integer('denivele')->default(0);

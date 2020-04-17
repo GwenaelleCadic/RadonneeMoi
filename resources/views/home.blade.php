@@ -10,70 +10,55 @@
         </div>
      @endif
     {{-- On affiche les données de l'utilisateur --}}
-    <div class="homeBox1">
-        <div>
-            <div class="homeHaut1">                
-                <img src="uploads/avatars/{{Auth::user()->avatar}}" class='photo'>
-                <h2 class='contenue'>{{Auth::user()->name}}</h2>
-                <a class='contenue'>{{ Auth::user()->email }}</a>                      
-                <a class='contenue'>{{ Auth::user()->niveau }}</a>
-                <a class='contenue'>{{ Auth::user()->region }}</a>
-                <a class='contenue'>{{ Auth::user()->groupe }}</a>    
+    <div class="homeBox">
+            <div class="homeHaut">
+                <div class="col-sm col-lg">                
+                    <img src="uploads/avatars/{{Auth::user()->avatar}}" class='photoProf'>
+                </div>
+                <div class="col-sm col-lg">
+                    <h2 class='marron'>{{Auth::user()->name}}</h2>
+                    <div class='titreContenueProf'>adresse:</div><a class='contenueProf'>{{ Auth::user()->email }}</a>                      
+                    <div class='titreContenueProf'>niveau:</div><a class='contenueProf'>{{ Auth::user()->niveau }}</a>
+                    <div class='titreContenueProf'>region:</div><a class='contenueProf'>{{ Auth::user()->region }}</a>
+                    <div class='titreContenueProf'>groupe:</div><a class='contenueProf'>{{ Auth::user()->groupe }}</a>
+                </div>
             </div>
+            <div class="descrUser">{{Auth::user()->description}}</div> 
             <div class='homeBas1'>
-            <form enctype="multipart/form-data" action="{{route('profil.update')}}" method="POST">
-                    <label> Changer de photo de profil</label>
-                    <input type="file" name="avatar">
-                    <input type="hidden" name="_token" value="{{csrf_token()}}">
-                    <input type="submit" class="pull-right btn btn-sm btn-primary">
-                </form>
+                <a href="user/{{Auth::user()->id}}/edit" class="connexionBouton">
+                    Modifier
+                </a>
+                <button class="btn btn-danger" data-id={{Auth::user()->id}} data-toggle="modal" data-target="#delete">Supprimer mon compte</button>
             </div>    
-        </div>
     </div>
                             
     </div>
     
+    <h3>Cela pourrait vous intéresser :</h3>
     <div class="homeBox2">
-    Pourraient vous intéresser :
-    @guest
-        @if( Auth::user()->groupe=='true')
-            @foreach($marcheFlashs as $marcheFlash)
+        @if(count($events1 ?? '')>0)        
+            @foreach($events1 as $event)
             <div class="homeMarche">
                 <div class="homeMarcheTitre">
-                    <a href="rando/{{$marcheFlash->marche_id}}" class='vert'>{{$marcheFlash->marche->nom}}</a>
+                    <a href="rando/{{$event->marche_id}}" class='vert'>{{$event->marche->nom}}</a>
                 </div>
                 <div class="presentation">
-                    <a class="affichageInfoMarche"><strong class="marron">Distance:</strong> {{$marcheFlash->marche->distance}} m</a>
-                    <a class="affichageInfoMarche"><strong class="marron">Dénivelé:</strong> {{$marcheFlash->marche->denivele}}m</a>
-                    <a class="affichageInfoMarche"><strong class="marron">Niveau:</strong> {{$marcheFlash->marche->niveau}}</a>
-                    <a class="affichageInfoMarche"><strong class="marron">Région:</strong> {{$marcheFlash->marche->region}}</a>
+                    <a class="affichageInfoMarche"><strong class="marron">Distance:</strong> {{$event->marche->distance}} m</a>
+                    <a class="affichageInfoMarche"><strong class="marron">Dénivelé:</strong> {{$event->marche->denivele}}m</a>
+                    <a class="affichageInfoMarche"><strong class="marron">Niveau:</strong> {{$event->marche->niveau}}</a>
+                    <a class="affichageInfoMarche"><strong class="marron">Région:</strong> {{$event->marche->region}}</a>
                 </div>
             </div>
             @endforeach
-        @endif
+        
         @else
-            @foreach($marches as $marche)
-                @if($marche->createur!=Auth::user()->id && $marche->region==Auth::user()->region && $marche->niveau==Auth::user()->region)
-                <div class="homeMarche">
-                    <div class="homeMarcheTitre">
-                        <a href="rando/{{$marcheFlash->marche_id}}" class='vert'>{{$marcheFlash->marche->nom}}</a>
-                    </div>
-                    <div class="presentation">
-                        <a class="affichageInfoMarche"><strong class="marron">Distance:</strong> {{$marcheFlash->marche->distance}} m</a>
-                        <a class="affichageInfoMarche"><strong class="marron">Dénivelé:</strong> {{$marcheFlash->marche->denivele}}m</a>
-                        <a class="affichageInfoMarche"><strong class="marron">Niveau:</strong> {{$marcheFlash->marche->niveau}}</a>
-                        <a class="affichageInfoMarche"><strong class="marron">Région:</strong> {{$marcheFlash->marche->region}}</a>
-                    </div>
-                </div>
-                @endif
-            @endforeach
-            @endguest
+            Malheureusement, rien ne semble sortir du lot pour vous
+        @endif
     </div>
-   
+    <h3>Marches que vous avez proposées :</h3>
     <div class="homeBox2">
-        Marches proposées :
-        @foreach ($marches as $marche)
-            @if($marche->createur==Auth::user()->id)
+        @if(count($marches ?? '')>0)  
+            @foreach ($marches as $marche)
                 <div class="homeMarche">
                     <div class="homeMarcheTitre">
                         <a href="rando/{{$marche->id}}" class='vert'>{{$marche->nom}}</a>
@@ -84,9 +69,80 @@
                         <a class="affichageInfoMarche"><strong class="marron">Niveau:</strong> {{$marche->niveau}}</a>
                         <a class="affichageInfoMarche"><strong class="marron">Région:</strong> {{$marche->region}}</a>
                     </div>
-                </div>
-            @endif                            
-        @endforeach
+                </div>                            
+            @endforeach
+        @else
+                Vous n'avez rien proposé (pour le moment...)
+        @endif
+
+    </div>
+
+    <h3>Events que vous avez proposés :</h3>
+    <div class="homeBox2">
+        @if(count($events2 ?? '')>0)  
+            @foreach ($events2 as $event)
+                <div class="homeMarche">
+                    <div class="homeMarcheTitre">
+                        <a href="rando/{{$event->marche->id}}" class='vert'>{{$event->marche->nom}}</a>
+                    </div>
+                    <div class="presentation">
+                        <a class="affichageInfoMarche"><strong class="marron">Distance:</strong> {{$event->marche->distance}} m</a>
+                        <a class="affichageInfoMarche"><strong class="marron">Dénivelé:</strong> {{$event->marche->denivele}}m</a>
+                        <a class="affichageInfoMarche"><strong class="marron">Niveau:</strong> {{$event->marche->niveau}}</a>
+                        <a class="affichageInfoMarche"><strong class="marron">Région:</strong> {{$event->marche->region}}</a>
+                    </div>
+                </div>                           
+            @endforeach
+        @else
+            Vous n'avez pas d'événements en cours
+        @endif
+    </div>
+
+    <h3>Marches que vous avez enregistrées :</h3>
+    <div class="homeBox2">
+        @if(count($historiques ?? '')>0)  
+            @foreach ($historiques as $historique)
+                <div class="homeMarche">
+                    <div class="homeMarcheTitre">
+                        <a href="rando/{{$historique->marche->id}}" class='vert'>{{$historique->marche->nom}}</a>
+                    </div>
+                    <div class="presentation">
+                        <a class="affichageInfoMarche"><strong class="marron">Distance:</strong> {{$historique->marche->distance}} m</a>
+                        <a class="affichageInfoMarche"><strong class="marron">Dénivelé:</strong> {{$historique->marche->denivele}}m</a>
+                        <a class="affichageInfoMarche"><strong class="marron">Niveau:</strong> {{$historique->marche->niveau}}</a>
+                        <a class="affichageInfoMarche"><strong class="marron">Région:</strong> {{$historique->marche->region}}</a>
+                    </div>
+                </div>                           
+            @endforeach
+        @else
+            Vous n'avez pas enregistré de marche
+        @endif
+    </div>
+</div>
+
+<div class="modal modal-danger fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title text-center" id="myModalLabel">Delete Confirmation</h4>
+        </div>
+            {!! Form::open(['route'=>['rando.destroy','test'], 'method'=>'POST']) !!}
+
+                    {{method_field('delete')}}
+                    {{csrf_field()}}
+                    <div class="modal-body">
+                            <p class="text-center">
+                                    Etes-vous sûr de vouloir supprimer votre compte. Toutes vos informations seront définitivement perdues.
+                            </p>
+                            <input type="hidden" name="id" id="id" value="{{Auth::user()->id}}">
+
+                    </div>
+                    <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Non, Arretez</button>
+                            <button type="submit" class="btn btn-warning">Oui, Supprimez</button>
+                    </div>
+            </form>
     </div>
 </div>
 @endsection

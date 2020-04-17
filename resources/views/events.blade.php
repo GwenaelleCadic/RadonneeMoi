@@ -4,22 +4,22 @@
 @section('content')
 <div>
 <h1 class="titreAccueil"> Voici les marches à venir </h1>
-    @foreach($marches as $marche)
+    @foreach($events as $event)
         <div class="marche">
-            <h3> <a href="rando/{{$marche->marche_id}}" class="vert">{{$marche->marche->nom}}</a></h3>
+            {{$event->rdv}}<h3> <a href="rando/{{$event->marche_id}}" class="vert">{{$event->marche->nom}}</a></h3>
             <hr/>
             <div class="presentation">
-                <a class="affichageInfoMarche"><strong class="marron">Distance:</strong> {{$marche->marche->distance}} m</a>
-                <a class="affichageInfoMarche"><strong class="marron">Dénivelé:</strong> {{$marche->marche->denivele}}m</a>
-                <a class="affichageInfoMarche"><strong class="marron">Niveau:</strong> {{$marche->marche->niveau}}</a>
-                <a class="affichageInfoMarche"><strong class="marron">Région:</strong> {{$marche->marche->region}}</a>
-                <a class="affichageInfoMarche"><strong class="marron">Date :</strong> {{$marche->rdv}}</a>
+                <a class="affichageInfoMarche"><strong class="marron">Distance:</strong> {{$event->marche->distance}} m</a>
+                <a class="affichageInfoMarche"><strong class="marron">Dénivelé:</strong> {{$event->marche->denivele}}m</a>
+                <a class="affichageInfoMarche"><strong class="marron">Niveau:</strong> {{$event->marche->niveau}}</a>
+                <a class="affichageInfoMarche"><strong class="marron">Région:</strong> {{$event->marche->region}}</a>
+                <a class="affichageInfoMarche"><strong class="marron">Date :</strong> {{$event->rdv}}</a>
             </div>
             <div class="descrMarche">
-                    {{$marche->marche->description}}
+                    {{$event->description}}
                 </div>
             <hr/>                 
-                Venez marcher avec {{$marche->user->name}}
+                Venez marcher avec <a href="user/{{$event->user_id}}">{{$event->user->name}}</a>
         </div>
     @endforeach
 

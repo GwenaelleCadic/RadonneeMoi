@@ -1,8 +1,8 @@
-<nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color: #BC856D;">
+<nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color: #84817f;">
   <div class="container">
       <a class="navbar-brand" href="{{ url('/rando') }}">
-          {{-- {{ config('app.name', 'RandonneMoi') }} --}}
-          RandonnezMoi
+        <img src="{{asset('../resources/images/logo.png')}}" style="position: absolute;width:100px; height:80px;margin-right: 25px;"> 
+          
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
           <span class="navbar-toggler-icon"></span>
@@ -18,42 +18,42 @@
           @guest
             @if (Route::has('register'))
                 <ul class="navbar-nav ml-auto">
-              <a class="nav-link" style="color: #2d6637;" href="{{ asset('rando/') }}">Accueil</a>                
-              <a class="nav-link" style="color: #2d6637;" href="{{asset('search')}}">Les randonnées</a>
+              <a class="nav-link" href="{{ asset('rando/') }}">Accueil</a>                
+              <a class="nav-link" href="{{asset('search')}}">Randonnées</a>
             @endif
             @else
              <ul class="navbar-nav ml-auto">
-                <a class="nav-link" style="color: #2d6637;" href="{{ asset('rando/') }}">Accueil</a>  
-                <a class="nav-link" style="color: #2d6637;" href="{{ asset('rando/create') }}">Tracer un circuit</a>  
-                <a class="nav-link" style="color: #2d6637;" href="{{asset('search')}}">Les randonnées</a>
-                <a class="nav-link" style="color: #2d6637;" href="{{asset('events')}}">Les événements</a>
+                <a class="nav-link" href="{{ asset('rando/') }}">Accueil</a>  
+                <a class="nav-link" href="{{ asset('rando/create') }}">Tracer</a>  
+                <a class="nav-link" href="{{asset('search')}}">Randonnées</a>
+                <a class="nav-link" href="{{asset('events')}}">Evénements</a>
         @endguest
               <!-- Authentication Links -->
               @guest
                   <li class="nav-item">
-                      <a class="nav-link" style="color: #2d6637;" href="{{ route('login') }}">{{ __('Login') }}</a>
+                      <a class="nav-link" href="{{ route('login') }}">Connexion</a>
                   </li>
                   @if (Route::has('register'))
                       <li class="nav-item">
-                          <a class="nav-link" style="color: #2d6637;" href="{{ route('register') }}">{{ __('Register') }}</a>
+                          <a class="nav-link" href="{{ route('register') }}">Inscription</a>
                       </li>
                   @endif
               @else
               
                   <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="titreBarre dropdown-toggle" href="#" role="button" style="position:relative;padding-left:50px" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        <img src="uploads/avatars/{{Auth::user()->avatar}}" style="width:32px; height:32px; position:absolute; top:10px;left:10px; border-radius:50%; margin-right: 25px;"> 
+                        <img src="{{ asset('uploads/avatars/')}}/{{Auth::user()->avatar}}" style="width:32px; height:32px; position:absolute; top:10px;left:10px; border-radius:50%; margin-right: 25px;"> 
                         {{ Auth::user()->name }} <span class="caret"></span>
                     </a>
 
                       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                           <a class="dropdown-item" href="{{ asset('home') }}">
-                             Profil
+                             Profile
                           </a>
                           <a class="dropdown-item" href="{{ route('logout') }}"
                              onclick="event.preventDefault();
                                            document.getElementById('logout-form').submit();">
-                              {{ __('Logout') }}
+                              Déconnection
                           </a>
 
                           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

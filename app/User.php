@@ -41,7 +41,15 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
     
-    public function marcheFlashs(){
+    public function events(){
         return $this->hasMany(MarcheFlash::class);
+    }
+
+    public function marche(){
+        return $this->hasMany(Marche::class);
+    }
+
+    public function historiques(){
+        return $this->hasMany(Historique::class);
     }
 }

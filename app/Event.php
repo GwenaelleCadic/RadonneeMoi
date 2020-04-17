@@ -6,9 +6,9 @@ use App\Marche;
 
 use Illuminate\Database\Eloquent\Model;
 
-class MarcheFlash extends Model
+class Event extends Model
 {
-    protected $table="marcheflashs";
+    protected $table="events";
     public function user(){
         return $this->belongsTo(User::class);
     }

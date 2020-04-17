@@ -8,6 +8,7 @@ use App\User;
 use App\Marche;
 use Image;
 use Auth;
+use App\Event;
 class UserController extends Controller
 {
 
@@ -28,7 +29,7 @@ class UserController extends Controller
 
 
         $marche=Marche::all();
-		return view('home')->with('marches',$marche);
+		return redirect()->back();
     }
     /**
      * Display a listing of the resource.
@@ -65,16 +66,17 @@ class UserController extends Controller
         ]);
 
         $user=new User;
-        $user->pseudo = $request->input('pseudo');
-        $user->mdp = bcrypt($request->input('mdp'));
-        $user->email = $request->input('email');
-        $user->niveau = $request->input('niveau');
-        $user->region=$request->input('region');
 
-        $user->save();
+            $user->pseudo = $request->input('pseudo');
+            $user->mdp = bcrypt($request->input('mdp'));
+            $user->email = $request->input('email');
+            $user->niveau = $request->input('niveau');
+            $user->region=$request->input('region');
 
-        $marche=Marche::all();
-		return view('accueil')->with('marches',$marche);
+            $user->save();
+
+            $marche=Marche::all();
+            return view('accueil')->with('marches',$marche);
 
     }
 
@@ -86,7 +88,10 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user=User::find($id);
+        $marches=Marche::all();
+        $events=Event::all();
+		return view('profile')->with('users',$user)->with('marches',$marches)->with('events',$events);
     }
 
     /**
@@ -97,7 +102,16 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        if(Auth::user()){
+            $user=User::find($id);
+            if($user){
+            return view('updateUser')->withUser($user);
+            }else{
+                return redirect()->back();
+            }
+        }else{
+            return redirect()->back();
+        }
     }
 
     /**
@@ -107,17 +121,31 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $this->validate($request,[
-            'pseudo'=>'required|unique:users,pseudo,' . $id,
-            'email'=>'required|email|unique:users,email,'.$id,
-        ]);
-            
-        $this->update($id,$request->all());
-        return redirect('user')->withOk("L'utilisateur".$request->input('pseudo'). "a été modifié.");
+        // $this->validate($request,[
+        //     'pseudo'=>'required|unique:users,pseudo,' . $id,
+        //     'email'=>'required|email|unique:users,email,'.$id,
+        // ]);
+        
+        $user=User::find($request->input('id'));
+        if($user)
+        {
+            $user->name = $request->input('name');
+            $user->email = $request->input('email');
+            $user->niveau = $request->input('niveau');
+            $user->region=$request->input('region');
+            $user->description=$request->input('description');
+            $user->save();
+            $marche=Marche::all();
+            return redirect('home')->withOk("L'utilisateur".$request->input('name'). "a été modifié.")->with('marches',$marche);
+        }else{
+            echo $id;
+        }
+
 
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -127,6 +155,11 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $this->getById($id)->delete();
+        Auth::logout();
+        $user=User::find($request->input('id'));
+		$user->delete();
+        
+        $marche=Marche::all();
+        return view('accueil')->with('marches',$marche);
     }
 }

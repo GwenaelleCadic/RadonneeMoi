@@ -1,18 +1,25 @@
 @extends('layouts.app')
 @section('content')
-    <h1> Création d'une nouvelle marche </h1>
-    {!! Form::open(['action' => 'RandoController@store','method'=>'POST'])!!}
+    <h1 class="titreAccueil"> Création d'une nouvelle marche </h1>
+    
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
             <div class="newRandoBox">
-        
+        {!! Form::open(['action' => 'RandoController@store','method'=>'POST'])!!}
             <div class="form-group row">
                     <label for="nom" class="col-md-4 control-label"> Comment s'appelle cette marche? </label>
                     <div class="col-md-6">
                         <input type="text" class="form-control" id="nom" name="nom" placeholder="Ma jolie marche" required>
                     </div>
                 </div>
+
+            <div class="form-group row">
+                <label for="region" class="col-md-4 control-label"> Et dans quelle région se trouve cette beauté? </label>
+                <div class="col-md-6">
+                <input type="text" class="form-control" id="region" name="region" placeholder="Chez moi">
+                </div>
+            </div>
 
             <h2>Entrez le chemin</h2>
             <div id="map" class="map"></div>
@@ -31,43 +38,24 @@
                 });
             </script>
 
+        
             <div class="form-group row">
-                <label for="region" class="col-md-4 control-label"> Et dans quelle région se trouve cette beauté? </label>
-                <div class="col-md-6">
-                <input type="text" class="form-control" id="region" name="region" placeholder="Chez moi">
-                </div>
-            </div>
-        <div class="form-group row">
-            <label for="niveau"  class="col-md-4 control-label"> Quel est son niveau de difficulté ? </label>
-            <div class="col-md-6">
-                <input type="radio" id="noir" name="niveau" value="noir">
-                    <label for="noir">Noir</label>
-                <input type="radio" id="rouge" name="niveau" value="rouge">
-                    <label for="rouge">Rouge</label>
-                <input type="radio" id="bleu" name="niveau" value="bleu">
-                    <label for="bleu">Bleu</label>
-                <input type="radio" id="vert" name="niveau" value="vert" checked>
-                    <label for="vert">Vert</label>
-            </div>
-        </div>
-            {{-- <div class="form-group">
-            <label for="niveau"> Quel est son niveau de difficulté ? </label>
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-dark">
-                        <input type="radio" name="niveau" id="noir" checked> Noir
-                    </label>
-                    <label class="btn btn-danger">
-                        <input type="radio" name="niveau" id="rouge"> Rouge
-                    </label>
-                    <label class="btn btn-primary">
-                        <input type="radio" name="niveau" id="bleu"> Bleu
-                    </label>
-                    <label class="btn btn-success">
-                        <input type="radio" name="niveau" id="vert"> Vert
-                    </label>
-                </div>
-            </div> --}}
+                <label for="niveau"  class="col-md-4 control-label"> Quel est son niveau ? </label>
+                <div class="button-wrap">
+                    <input type="radio" name="niveau" id="bnoir" class="hidden radio-label" value='noir'>
+                    <label for="bnoir" class="button-label bnoir">Noir</label>
 
+                    <input type="radio" name="niveau" id="brouge" class="hidden radio-label" value='rouge'>
+                    <label for="brouge" class="button-label brouge" >Rouge</label>
+
+                    <input type="radio" name="niveau" id="bbleu" class="hidden radio-label" value='bleu'>
+                    <label for="bbleu" class="button-label bbleu">Bleu</label>
+
+                    <input type="radio" name="niveau" id="bvert" class="hidden radio-label" value='vert' checked>
+                    <label for="bvert" class="button-label bvert">Vert</label>
+                </div> 
+               </div>
+               
             <div class="form-group row">
                 {{-- On ajoute un temps de marche --}}              
                 <label for="temps" class="col-md-4 control-label"> Temps: </label>
@@ -80,8 +68,10 @@
                 {{-- On ajoute un dénivelé --}}              
                 <label for="denivele" class="col-md-4 control-label"> Dénivelé(en m) </label>
                 <div class="col-md-6">
-                <input type="int" class="form-control" id="denivele" name="denivele">
+                    <input type="int" class="form-control" id="denivele" name="denivele">
                 </div>
+            </div>
+            <div class="form-group row">
                 {{-- On ajoute une distance --}}              
                 <label for="distance" class="col-md-4 control-label"> Distance (en m) </label>
                 <div class="col-md-6">
@@ -93,16 +83,16 @@
             <div class="form-group row"> 
                 <label for="description" class="col-md-4 control-label"> Description: </label>
                 <div class="col-md-6">
-                <input type="textarea" class="form-control" id="description" name="description">
+                <input type="textarea" class="form-control" id="description" name="description" cols="70" rows="3">
                 </div>
-            </div>
+            </div>            
                     
-        <input type="hidden" name="createur" id="createur" value={{ Auth::user()->id }} />     
-            {!! Form::submit('Créer',['class' => 'connexionBouton']) !!}
-            {{-- On passe l'id du créateur en variable --}}
-</div>
-</div>
-</div>
+                <input type="hidden" name="user_id" id="user_id" value={{ Auth::user()->id }} />     
+                    {!! Form::submit('Créer',['class' => 'connexionBouton']) !!}
+                    {{-- On passe l'id du créateur en variable --}}
+            </div>
+        </div>
+    </div>
 </div>
 
     {!! Form::close() !!}

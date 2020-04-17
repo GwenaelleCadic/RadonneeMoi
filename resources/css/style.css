@@ -1,10 +1,12 @@
 html, body {
-    background-color: #fff;
-    color: #636b6f;
-    font-family: 'Nunito', sans-serif;
-    font-weight: 200;
-    height: 100vh;
-    margin: 0;
+  /* background-color: #fff; */
+  color: #636b6f;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 200;
+  height: 100vh;
+  margin: 0;
+  background-image: url("../images/landscape.jpg");
+  background-attachment: fixed;
 }
 
 .full-height {
@@ -68,26 +70,36 @@ ul {
 }
 .titreAccueil
 {
-    color:#BC856D;
+    color:#3d2b03d9;
     text-align: center;
     margin-bottom: 50px;
 }
-.marche
+
+.accueilContainer
 {
-    background-color: #ede6e4;
-    flex: 1;
-    display: block;
-    width: 100%;
-    margin-top:10px;
+  text-align: center;
+}
+.marche {
+  flex: 1;
+  display: block;
+  width: 80%;
+  margin-top: 10px;
+  border: solid 1px white;
+  margin-right: auto;
+  margin-left: auto;
 }
 
+.marcheHaut
+{
+  border-bottom:solid 0.5px white;
+}
 .marron
 {
-    color:#BC856D;
+    color:#dfa771;
 }
 .vert
 {
-    color: #2d6637;
+    color: #094914;
 }
 h3
 {
@@ -111,12 +123,23 @@ h3
     border-radius:50%;
     margin-right: 25px;
 }
+.avatar2
+{
+  width: 100px;
+  height: auto;
+  top: 10px;
+  left: 10px;
+  border-radius: 50%;
+  margin-right: 25px;
+  margin-left: 25px;
+}
 
 .presentation
 {
     display:flex;
     flex-wrap: wrap;
     flex-direction: row;
+    justify-content: space-evenly;
 }
 
 .affichageInfoMarche
@@ -129,6 +152,7 @@ h3
 {
     background-color: #ede6e4;
     padding:30px;
+    opacity:0.8;
 }
 .descrMarche
 {
@@ -164,6 +188,13 @@ h3
     justify-content: center;
     bottom:20px;
 }
+h2.contenue {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  bottom: 20px;
+  margin-top: 10px;
+}
 
 .titreContenue
 {
@@ -195,7 +226,7 @@ h3
     border-width: 1px;
     margin-top: 10%;
     border-radius: 5px;
-    border-color: #2d6637;
+    border-color: black;
 }
 
 .connexionTitre
@@ -257,21 +288,26 @@ h3
 
 /* Gestion des boutons de niveau */
 .bnoir{
-  background:black; 
+  background:black; color: white;
 }
 .brouge{
-  background:red;
+  background:red;color: white;
 }
 .bbleu{
-  background:blue;
+  background:blue;color: white;
 }
 .bvert{
   background:green;
+  color: white;
+}
+.bnone{
+  background-color: white;
+  color:black;
 }
 .button-label {
     display: inline-block;
     padding: 3px 5px;
-    color: white;
+
     cursor: pointer;
     border-radius: 0.25em;
     box-shadow: 0 3px 10px rgba(0,0,0,0.2), inset 0 -3px 0 rgba(0,0,0,0.22);
@@ -283,12 +319,18 @@ h3
     box-shadow: 0 3px 10px rgba(0,0,0,0.2), inset 0px -1px 0 rgba(0,0,0,0.22); 
   }
 
+#bnone:checked + .button-label{
+  background-color: gray;
+}
+#bnone:hover + .button-label{
+  background-color: gray;
+}
 #bnoir:checked + .button-label {
   background: #3b3c3d;
   color:gray;
 }
 #bnoir:hover+.button-label {
-    background: #18191a;
+    background: #3b3c3d;
   }
 
 #brouge:checked + .button-label {
@@ -296,22 +338,22 @@ h3
   color:gray;
 }
 #brouge:hover + .button-label {
-    background: #18191a;
+    background: #ed5555;
   }
 
 #bbleu:checked + .button-label {
   background: #5571ed;
   color:gray;
   }
-#bbleu:hover .button-label {
-    background: #18191a;
+#bbleu:hover + .button-label {
+    background: #5571ed;
   }
 #bvert:checked + .button-label {
   background: #55ed71;
   color:gray;
   }
   #bvert:hover+.button-label {
-    background: #18191a;
+    background: #55ed71;
   }
 
 .hidden {
@@ -320,22 +362,21 @@ h3
 
 
 /* Home */
-.homeBox1{
-  width:80%;
+.homeBox{
   margin-top: 10px;
-  background-color: #ede6e4;
-  border-radius: 20px;
+  border: solid 1px;
+  /* box-sizing: content-box; */
+  widows: 90%;
+  margin-right:auto;
+  margin-left:auto;
 }
 
 .homeBox2{
-  float:right;
-  width:80%;
   margin-top: 10px;
-  background-color: #ede6e4;
   overflow: auto;
   white-space: nowrap;
-  height:220px;
-  border-radius:20px;
+  box-sizing: content-box;
+  border:solid 1px;
 }
 
 
@@ -349,21 +390,23 @@ h3
 
 .homeHaut1{
     height: 170px;
-    border-bottom: solid;
-    border-width: 1px;
     padding: 10px;
 }
+.homeHaut2{
+  border-left: solid 1px black;
+  flex-direction: column;
+}
 .homeBas1{
-  padding:10px;
+  padding: 10px;
 }
 
-.homeMarche
-{
-  background-color: #c4f5c5;
+.homeMarche {
   width: 200px;
   height: 95%;
   display: inline-block;
   justify-content: center;
+  margin: 10px;
+  border: solid 1px;
 }
 
 .homeMarcheTitre{
@@ -372,8 +415,65 @@ h3
   padding: 5px;
 }
 
-.newRandoBox{
-  background-color: #ede6e4;
+.newRandoBox {
   padding: 20px 10px;
   margin-bottom: 20px;
+  border: solid 1px;
+  margin-top: 10px;
+}
+
+.descrUser {
+  background-color: white;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modifBouton
+{
+    border: solid;
+    border-width: 1px;
+    margin-top: 10%;
+    border-radius: 5px;
+    border-color: #2d6637;
+    position:absolute; top:0; right:0;
+}
+
+.contenueProf
+{
+    position: relative;
+    display:flex;
+    justify-content: center;
+    bottom:20px;
+}
+h2.contenue {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  bottom: 20px;
+  margin-top: 10px;
+}
+
+.titreContenueProf
+{
+  color: #2d6637;
+  margin-left: 10px;
+}
+
+.photoProf {
+  width: auto;
+  height: 200px;
+  float: left;
+  margin-right: 25px;
+  border-radius: 50%;
+  margin-top: 25px;
+}
+
+#MyForm{
+  display: none;
 }

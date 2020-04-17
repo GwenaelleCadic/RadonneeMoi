@@ -4438,11 +4438,16 @@ input[type=button].btn-block {
 .nav-link {
   display: block;
   padding: 0.5rem 1rem;
+  color: #2d6637;
 }
 
-.nav-link:hover,
+.nav-link:hover
+{
+  font-weight: bold;
+}
 .nav-link:focus {
   text-decoration: none;
+
 }
 
 .nav-link.disabled {
@@ -4864,7 +4869,7 @@ input[type=button].btn-block {
 }
 
 .navbar-light .navbar-nav .nav-link {
-  color: rgba(0, 0, 0, 0.5);
+  color: #2d6637;
 }
 
 .navbar-light .navbar-nav .nav-link:hover,
@@ -10882,3 +10887,14 @@ a.text-dark:focus {
   }
 }
 
+
+.logo
+{
+  width:100px;
+  height:auto;
+  position:absolute;
+  top:10px;
+  left:10px;
+  border-radius:50%;
+  margin-right: 25px;
+}
