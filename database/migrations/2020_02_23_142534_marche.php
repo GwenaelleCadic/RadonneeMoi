@@ -17,7 +17,7 @@ class Marche extends Migration
             $table->increments('id');
             $table->string('nom',255)->unique();
             $table->string('niveau');
-            $table->time('temps',4)->default(0);
+            $table->time('temps',4);
             $table->string('type');
             $table->string('description');
             $table->integer('region_id')->unsigned();
