@@ -4,6 +4,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
+            <h1 class="titreAccueil"> Modification de la marche</h1>
+
             <div class="newRandoBox">
                 {!! Form::open(['route'=>['rando.update','{{$marches->id}}'], 'method'=>'PUT',]) !!}
                     <div class="form-group row">
@@ -12,12 +14,59 @@
                             <input type="text" class="form-control" id="nom" name="nom" value="{{old('nom',$marches->nom)}}">
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="region" class="col-md-4 control-label"> Région </label>
-                        <div class="col-md-6">
-                        <input type="text" class="form-control" id="region" name="region" value="{{old('region',$marches->region)}}">
-                        </div>
+                    <div class="container">
+                        Région de prédilection
+                        <div class class="form group row">
+                            <strong for="country"> Pays</strong>
+                            <select name="country" id="country" class="form-control">
+                                <option value="">Pays</option>
+                                @foreach($countries as $country)
+                                    @if($marches->country==$country->nom)
+                                        <option value="{{$country->id}}" selected>{{$country->nom}}</option>
+                                    @else
+                                        <option value="{{$country->id}}">{{$country->nom}}</option>
+                                    @endif
+                            @endforeach
+                            </select>
+                        <div class class="form group row">
+                            <strong for="region">Région</strong>
+                            <select name="region" id="region" class="form-control">
+                                <option value="">Region</option>
+                                {{-- @foreach($regions as $region)
+                                    @if($region->nom==$marches->region)
+                                        <option value="{{$region->id}}" selected>{{$region->nom}}</option>
+                                    @else
+                                        <option value="{{$region->id}}">{{$region->nom}}</option>
+                                    @endif
+                                @endforeach                           --}}
+                            </select>
+                        </div>    
                     </div>
+                    <script>
+                        $(document).ready(function(){
+                            $('select[name="country"]').on('change',function(){
+                                var country_id=$(this).val();
+                                if(country_id){
+                                    $.ajax({
+                                       type:'GET',
+                                       url:'../country/getStates/'+country_id,                                                   
+                                       data:{country:country_id},
+                                       //dataType:'json',
+                                       success:function(data){
+                                            console.log(data);
+                                            $('select[name="region"]').empty();
+                                            data.forEach(country=>{
+                                            $('select[name="region"]')
+                                            .append('<option value="'+country.country_id+'">'+country.nom+'</option>');
+                                            });
+                                       } 
+                                    });
+                                }else{
+                                    $('select[name="region"]').empty();
+                                }
+                            })
+                        })
+                    </script>
 
                     <div class="form-group row">
                         <label for="niveau" class="col-md-4 control-label"> Niveau</label>
@@ -61,7 +110,7 @@
                     <div class="form-group row"> 
                         <label for="description" class="col-md-4 control-label"> Description: </label>
                         <div class="col-md-6">
-                        <input type="textarea" class="form-control" id="description" name="description" cols="70" rows="3" value="{{old('description',$marches->description)}}">
+                        <textarea type="textarea" class="form-control" id="description" name="description" cols="70" rows="3" value="{{old('description',$marches->description)}}"></textarea>
                         </div>
                     </div>
                     <input type="hidden" name="id" id="id" value={{$marches->id}} />

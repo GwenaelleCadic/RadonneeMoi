@@ -26,10 +26,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $marches=Marche::all();
-        // $events=Event::all();
-        // $historiques = Historique::where('user_id',"=",Auth::user()->id)->get();
-        // return view('home')->with('marches',$marches)->with('events',$events)->with('historiques',$historiques);
         if(Auth::user()->groupe=='true')
         {
             $events1=Event::where('user_id','!=',Auth::user()->id);
@@ -37,8 +33,8 @@ class HomeController extends Controller
         else
         {
             $events1=Marche::where("user_id","!=",Auth::user()->id)
-            ->where('region','LIKE','%'.Auth::user()->region.'%')
-            ->where('niveau','LIKE','%'.Auth::user()->region.'%');
+            ->where('region_id','LIKE','%'.Auth::user()->region_id.'%')
+            ->where('niveau','LIKE','%'.Auth::user()->niveau.'%');
         }
         $marches=Marche::where('user_id','=',Auth::user()->id);
         
@@ -55,8 +51,8 @@ class HomeController extends Controller
             else
             {
                 $events1=Marche::where("user_id","!=",Auth::user()->id)
-                ->where('region','LIKE','%'.Auth::user()->region.'%')
-                ->where('niveau','LIKE','%'.Auth::user()->region.'%')->get();
+                ->where('region_id','LIKE','%'.Auth::user()->region_id.'%')
+                ->where('niveau','LIKE','%'.Auth::user()->niveau.'%')->get();
             }
         }
         else

@@ -4,15 +4,20 @@
 @section('content')
 <div>
 <h1 class="titreAccueil"> Que cherchez-vous? </h1>
-{!! Form::open(['route'=>['rando.search'], 'method'=>"POST", 'class'=>'navbar-form navbar-left','role'=>'search'])  !!}
 
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="registerBox">
+            {!! Form::open(['route'=>['rando.search'], 'method'=>"POST", 'class'=>'navbar-form navbar-left','role'=>'search'])  !!}
                <div class="input-group custom-search-form">
                    <input type="text" class="form-control" name="search" placeholder="Search...">
                     <span class="input-group-btn">
                         <button type="submit"><i class="fa fa-search"> Chercher</i></button>
                     </span>
                </div>
-        Complément
+        <div class="container">
+        <strong>Complément</strong>
         <div class="presentation">
             <label for="niveau"> Le niveau recherché? </label>
             <div class="button-wrap">
@@ -38,25 +43,60 @@
                 <option value="none" selected>Peu importe</option>
             </select>
         </div>
-
-        {{-- <div class="form-group row">
-            <label for="temps"> La région </label>
-            <div class="button-wrap">
-                <input type="radio" name="temps" id="bnoir" class="hidden radio-label" value='dj'>
-                <label for="bnoir" class="button-label bnoir">Demi-journée</label>
-
-                <input type="radio" name="temps" id="brouge" class="hidden radio-label" value='j'>
-                <label for="brouge" class="button-label brouge" >Journée</label>
-
-                <input type='radio' name='temps' id='none' value='none' checked>
-                <label for='none'>Peu importe</label>
-            </div> 
-        </div> --}}
+    </div>
+        <div class="container">
+            <strong>Région de recherche</strong>
+            <div class class="form group row">
+                <label for="country"> Pays</label>
+                <select name="country" id="country" class="form-control">
+                    <option value="">Pays</option>
+                    @foreach($countries as $country)
+                            <option value="{{$country->id}}">{{$country->nom}}</option>
+                    @endforeach
+                    <option value="" selected> Peu importe</option>
+                </select>
+            <div class class="form group row">
+                <label for="region">Région</label>
+                <select name="region" id="region" class="form-control">
+                    <option value="none" selected>Peu importe</option>
+                </select>
+            </div>    
+        </div>
+        <script>
+   
+            $(document).ready(function(){
+                $('select[name="country"]').on('change',function(){
+                    var country_id=$(this).val();
+                    if(country_id){
+                        $.ajax({
+                           type:'GET',
+                           url:'../country/getStates/'+country_id,                                                   
+                           data:{country:country_id},
+                           //dataType:'json',
+                           success:function(data){
+                                console.log(data);
+                                $('select[name="region"]').empty();
+                                data.forEach(country=>{
+                                $('select[name="region"]')
+                                .append('<option value="'+country.country_id+'">'+country.nom+'</option>');
+                                });
+                           } 
+                        });
+                    }else{
+                        $('select[name="region"]').empty();
+                    }
+                })
+            })
+        </script>
 
        {!! Form::close() !!}
        <br/>
     </div>
-       <div>
+         </div>
+        </div>
+    </div>
+</div>       
+<div>
             @if(count($marches ?? '')>0)
                 @foreach ($marches as $marche)
                 <div class="marche">
@@ -65,8 +105,8 @@
                     <div class="presentation">
                         <a class="affichageInfoMarche"><strong class="marron">Distance:</strong> {!!$marche->distance!!} m</a>
                         <a class="affichageInfoMarche"><strong class="marron">Dénivelé:</strong> {!!$marche->denivele!!}m</a>
-                        <a class="affichageInfoMarche"><strong class="marron">Niveau:</strong> {!!$marche->niveau!!}</a>
-                        <a class="affichageInfoMarche"><strong class="marron">Région:</strong> {!!$marche->region!!}</a>
+                        <a class="affichageInfoMarche"><strong class="marron">Lieu:</strong> {!!$marche->region->country->nom!!}, {!!$marche->region->nom!!}</a>
+                        <a class="affichageInfoMarche b{{$marche->niveau}}" style="color:white">{{$marche->niveau}}</a>
                     </div>
                     <div class="descrMarche">
                             {!!$marche->description!!}
@@ -79,8 +119,14 @@
             </div>
                     
                 @endforeach
+                
             @endif
-       </div>
+            @if(session()->has('message'))
+            <div class="alert alert-success">
+                    {{ session()->get('message') }}
+            </div>
+            @endif
+        </div>
 
 </div>
 @endsection

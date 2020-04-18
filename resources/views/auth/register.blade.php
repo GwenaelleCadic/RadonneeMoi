@@ -14,14 +14,14 @@
 
                             {{-- On veut le nom de la personne --}}
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} row">
-                                <strong for="name" class="col-md-4 control-label marron">Nom</strong>
+                                <label for="name" class="col-md-4 control-label">Nom</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
 
                                     @if ($errors->has('name'))
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('name') }}</strong>
+                                            <label>{{ $errors->first('name') }}</label>
                                         </span>
                                     @endif
                                 </div>
@@ -29,14 +29,14 @@
 
                             {{-- On veut l'email de la personne, qui servira à se connecter--}}
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }} row">
-                                <strong for="email" class="col-md-4 control-label marron">Adresse email</strong>
+                                <label for="email" class="col-md-4 control-label ">Adresse email</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
 
                                     @if ($errors->has('email'))
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('email') }}</strong>
+                                            <label>{{ $errors->first('email') }}</label>
                                         </span>
                                     @endif
                                 </div>
@@ -44,14 +44,14 @@
 
                             {{-- On veut un mot de passe --}}
                             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }} row">
-                                <strong for="password" class="col-md-4 control-label marron">Mot de passe</strong>
+                                <label for="password" class="col-md-4 control-label">Mot de passe</label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password" class="form-control" name="password" required>
 
                                     @if ($errors->has('password'))
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('password') }}</strong>
+                                            <label>{{ $errors->first('password') }}</label>
                                         </span>
                                     @endif
                                 </div>
@@ -59,7 +59,7 @@
 
                             {{-- On veut une confirmation du mot de passe --}}
                             <div class="form-group row">
-                                <strong for="password-confirm" class="col-md-4 control-label marron">Confirmer le mot de passe</strong>
+                                <label for="password-confirm" class="col-md-4 control-label">Confirmer le mot de passe</label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
@@ -68,7 +68,7 @@
 
                            {{-- La personne donne aussi son niveau estimé (permettra de se contextualiser dans l'environnement de la plateforme) --}}
                             <div class="form-group row">
-                                <strong for="niveau" class="col-md-4 control-label marron"> Quel est votre niveau ? </strong>
+                                <label for="niveau" class="col-md-4 control-label"> Quel est votre niveau ? </label>
                                 <div class="button-wrap col-md-6">
                                     <input type="radio" name="niveau" id="bnoir" class="hidden radio-label" value='noir'>
                                     <label for="bnoir" class="button-label bnoir">Noir</label>
@@ -85,13 +85,7 @@
                            </div>
 
                             <div class="form-group row">
-                                <strong for="region" class="col-md-4 control-label marron"> Région de prédilection </strong>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" id="region" name="region" placeholder="Région">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <strong for="groupe" class="col-md-4 control-label marron"> Aimez-vous marcher en groupe ? </strong>
+                                <label for="groupe" class="col-md-4 control-label"> Aimez-vous marcher en groupe ? </label>
                                 <div class="col-md-6">
                                     <input type="radio" id="true" name="groupe" value="true">
                                     <label for="true">Oui</label>
@@ -100,24 +94,21 @@
                                     <label for="false">Non</label>
                                 </div>
                             </div>
-                                    
-                                <button class="btn btn-primary">Hey</button>
                                 
                                 <div class="container">
-                                    <h2>Dropdown feature</h2>
+                                    <h2>D'où venez-vous?</h2>
                                     <div class class="form group row">
-                                        <strong for="country">Select your Country</strong>
+                                        <label for="country"> Pays</label>
                                         <select name="country" id="country" class="form-control">
-                                            <option value="">Select Country</option>
+                                            <option value="">Pays</option>
                                             @foreach($countries as $country)
                                             <option value="{{$country->id}}">{{$country->nom}}</option>
                                         @endforeach
                                         </select>
                                     <div class class="form group row">
-                                        <strong for="region">Select your Region</strong>
+                                        <label for="region">Région</label>
                                         <select name="region" id="region" class="form-control">
                                             <option value="">Region</option>
-                                        
                                         </select>
                                     </div>    
                                 </div>
@@ -125,7 +116,6 @@
                                     $(document).ready(function(){
                                         $('select[name="country"]').on('change',function(){
                                             var country_id=$(this).val();
-                                            // console.log(country_id);
                                             if(country_id){
                                                 $.ajax({
                                                    type:'GET',
@@ -135,14 +125,14 @@
                                                    success:function(data){
                                                         console.log(data);
                                                         $('select[name="region"]').empty();
-                                                        data.forEach(country=>{
+                                                        data.forEach(region=>{
                                                         $('select[name="region"]')
-                                                        .append('<option value="'+country.country_id+'">'+country.nom+'</option>');
+                                                        .append('<option value="'+region.id+'">'+region.nom+'</option>');
                                                         });
                                                    } 
                                                 });
                                             }else{
-                                                $('select[nom="region"]').empty();
+                                                $('select[name="region"]').empty();
                                             }
                                         })
                                     })

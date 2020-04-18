@@ -19,13 +19,18 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password',60);
             $table->string('niveau',30)->default('inconnu');
-            $table->string('region',150)->default('inconnu');
+            $table->integer('region_id')->unsigned();
             $table->string('groupe',5)->default('false');
             $table->string('avatar')->default('default.jpg');
             $table->string('description')->default('Non remplie');
             $table->rememberToken();
             $table->timestamps();
         });
+
+        Schema::table('users',function(Blueprint $table){
+            $table->foreign('region_id')->references('id')->on('regions')->onDelete('cascade');
+        });
+        
     }
 
     /**
@@ -35,6 +40,7 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
+        Schema::dropForeign(['region_id']);
         Schema::dropIfExists('users');
     }
 }

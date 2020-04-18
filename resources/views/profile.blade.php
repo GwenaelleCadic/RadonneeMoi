@@ -9,7 +9,7 @@
                     <h2 class='contenue'>{{$users->name}}</h2>
                     <a class='contenue'>{{ $users->email }}</a>                      
                     <a class='contenue'>{{ $users->niveau }}</a>
-                    <a class='contenue'>{{ $users->region }}</a>
+                    <a class='contenue'>{{ $users->region->nom }}</a>
                     <a class='contenue'>{{ $users->groupe }}</a>    
                 </div>
                 <div class="homeBox2">
@@ -24,7 +24,7 @@
                                     <a class="affichageInfoMarche"><strong class="marron">Distance:</strong> {{$event->marche->distance}} m</a>
                                     <a class="affichageInfoMarche"><strong class="marron">Dénivelé:</strong> {{$event->marche->denivele}}m</a>
                                     <a class="affichageInfoMarche"><strong class="marron">Niveau:</strong> {{$event->marche->niveau}}</a>
-                                    <a class="affichageInfoMarche"><strong class="marron">Région:</strong> {{$event->marche->region}}</a>
+                                    <a class="affichageInfoMarche"><strong class="marron">Lieu:</strong>{{$event->marche->region->country->nom}}, {{$event->marche->region->nom}}</a>
                                 </div>
                             </div>
                         @endif
@@ -43,7 +43,7 @@
                                     <a class="affichageInfoMarche"><strong class="marron">Distance:</strong> {{$marche->distance}} m</a>
                                     <a class="affichageInfoMarche"><strong class="marron">Dénivelé:</strong> {{$marche->denivele}}m</a>
                                     <a class="affichageInfoMarche"><strong class="marron">Niveau:</strong> {{$marche->niveau}}</a>
-                                    <a class="affichageInfoMarche"><strong class="marron">Région:</strong> {{$marche->region}}</a>
+                                    <a class="affichageInfoMarche"><strong class="marron">Lieu:</strong> {{$marche->region->country->nom}}, {{$marche->region->nom}}</a>
                                 </div>
                             </div>
                         @endif                            

@@ -16,11 +16,16 @@
                     <img src="uploads/avatars/{{Auth::user()->avatar}}" class='photoProf'>
                 </div>
                 <div class="col-sm col-lg">
-                    <h2 class='marron'>{{Auth::user()->name}}</h2>
+                    <h1 class="titreAccueil"> {{Auth::user()->name}}</h1>
                     <div class='titreContenueProf'>adresse:</div><a class='contenueProf'>{{ Auth::user()->email }}</a>                      
                     <div class='titreContenueProf'>niveau:</div><a class='contenueProf'>{{ Auth::user()->niveau }}</a>
-                    <div class='titreContenueProf'>region:</div><a class='contenueProf'>{{ Auth::user()->region }}</a>
-                    <div class='titreContenueProf'>groupe:</div><a class='contenueProf'>{{ Auth::user()->groupe }}</a>
+                    <div class='titreContenueProf'>Lieu:</div><a class='contenueProf'>{{ Auth::user()->region->country->nom}}, {{ Auth::user()->region->nom}}</a>
+                    <div class='titreContenueProf'>groupe:</div><a class='contenueProf'>
+                        @if( Auth::user()->groupe=='true')
+                            mondain
+                        @else
+                            solitaire
+                        @endif</a>
                 </div>
             </div>
             <div class="descrUser">{{Auth::user()->description}}</div> 
@@ -34,7 +39,7 @@
                             
     </div>
     
-    <h3>Cela pourrait vous intéresser :</h3>
+    <h3 class='home'>Cela pourrait vous intéresser :</h3>
     <div class="homeBox2">
         @if(count($events1 ?? '')>0)        
             @foreach($events1 as $event)
@@ -46,7 +51,7 @@
                     <a class="affichageInfoMarche"><strong class="marron">Distance:</strong> {{$event->marche->distance}} m</a>
                     <a class="affichageInfoMarche"><strong class="marron">Dénivelé:</strong> {{$event->marche->denivele}}m</a>
                     <a class="affichageInfoMarche"><strong class="marron">Niveau:</strong> {{$event->marche->niveau}}</a>
-                    <a class="affichageInfoMarche"><strong class="marron">Région:</strong> {{$event->marche->region}}</a>
+                    <a class="affichageInfoMarche"><strong class="marron">Lieu:</strong> {{$event->marche->region->country->nom}},{{$event->marche->region->nom}}</a>
                 </div>
             </div>
             @endforeach
@@ -55,7 +60,7 @@
             Malheureusement, rien ne semble sortir du lot pour vous
         @endif
     </div>
-    <h3>Marches que vous avez proposées :</h3>
+    <h3 class='home'>Marches que vous avez proposées :</h3>
     <div class="homeBox2">
         @if(count($marches ?? '')>0)  
             @foreach ($marches as $marche)
@@ -67,7 +72,7 @@
                         <a class="affichageInfoMarche"><strong class="marron">Distance:</strong> {{$marche->distance}} m</a>
                         <a class="affichageInfoMarche"><strong class="marron">Dénivelé:</strong> {{$marche->denivele}}m</a>
                         <a class="affichageInfoMarche"><strong class="marron">Niveau:</strong> {{$marche->niveau}}</a>
-                        <a class="affichageInfoMarche"><strong class="marron">Région:</strong> {{$marche->region}}</a>
+                        <a class="affichageInfoMarche"><strong class="marron">Lieu:</strong> {{$marche->region->country->nom}},{{$marche->region->nom}}</a>
                     </div>
                 </div>                            
             @endforeach
@@ -77,7 +82,7 @@
 
     </div>
 
-    <h3>Events que vous avez proposés :</h3>
+    <h3 class='home'>Events que vous avez proposés :</h3>
     <div class="homeBox2">
         @if(count($events2 ?? '')>0)  
             @foreach ($events2 as $event)
@@ -98,7 +103,7 @@
         @endif
     </div>
 
-    <h3>Marches que vous avez enregistrées :</h3>
+    <h3 class='home'>Marches que vous avez enregistrées :</h3>
     <div class="homeBox2">
         @if(count($historiques ?? '')>0)  
             @foreach ($historiques as $historique)
@@ -110,7 +115,7 @@
                         <a class="affichageInfoMarche"><strong class="marron">Distance:</strong> {{$historique->marche->distance}} m</a>
                         <a class="affichageInfoMarche"><strong class="marron">Dénivelé:</strong> {{$historique->marche->denivele}}m</a>
                         <a class="affichageInfoMarche"><strong class="marron">Niveau:</strong> {{$historique->marche->niveau}}</a>
-                        <a class="affichageInfoMarche"><strong class="marron">Région:</strong> {{$historique->marche->region}}</a>
+                        <a class="affichageInfoMarche"><strong class="marron">Lieu:</strong> {{$historique->marche->country}},{{$historique->marche->region}}</a>
                     </div>
                 </div>                           
             @endforeach

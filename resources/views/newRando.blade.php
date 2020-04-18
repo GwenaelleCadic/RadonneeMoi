@@ -14,12 +14,49 @@
                     </div>
                 </div>
 
-            <div class="form-group row">
-                <label for="region" class="col-md-4 control-label"> Et dans quelle région se trouve cette beauté? </label>
-                <div class="col-md-6">
-                <input type="text" class="form-control" id="region" name="region" placeholder="Chez moi">
-                </div>
+            <div class="container">
+                <h2>Et où se trouve cette beautée?</h2>
+                <div class class="form group row">
+                    <strong for="country"> Pays</strong>
+                    <select name="country" id="country" class="form-control">
+                        <option value="">Pays</option>
+                        @foreach($countries as $country)
+                        <option value="{{$country->id}}">{{$country->nom}}</option>
+                    @endforeach
+                    </select>
+                <div class class="form group row">
+                    <strong for="region">Région</strong>
+                    <select name="region" id="region" class="form-control">
+                        <option value="">Region</option>
+                    
+                    </select>
+                </div>    
             </div>
+            <script>
+                $(document).ready(function(){
+                    $('select[name="country"]').on('change',function(){
+                        var country_id=$(this).val();
+                        if(country_id){
+                            $.ajax({
+                               type:'GET',
+                               url:'../country/getStates/'+country_id,                                                   
+                               data:{country:country_id},
+                               //dataType:'json',
+                               success:function(data){
+                                    console.log(data);
+                                    $('select[name="region"]').empty();
+                                    data.forEach(region=>{
+                                    $('select[name="region"]')
+                                    .append('<option value="'+region.id+'">'+region.nom+'</option>');
+                                    });
+                               } 
+                            });
+                        }else{
+                            $('select[name="region"]').empty();
+                        }
+                    })
+                })
+            </script>
 
             <h2>Entrez le chemin</h2>
             <div id="map" class="map"></div>
@@ -68,14 +105,14 @@
                 {{-- On ajoute un dénivelé --}}              
                 <label for="denivele" class="col-md-4 control-label"> Dénivelé(en m) </label>
                 <div class="col-md-6">
-                    <input type="int" class="form-control" id="denivele" name="denivele">
+                    <input type="int" class="form-control" id="denivele" name="denivele" placeholder="beaucoup trop">
                 </div>
             </div>
             <div class="form-group row">
                 {{-- On ajoute une distance --}}              
                 <label for="distance" class="col-md-4 control-label"> Distance (en m) </label>
                 <div class="col-md-6">
-                <input type="int" class="form-control" id="distance" name="distance">
+                <input type="int" class="form-control" id="distance" name="distance" placeholder="toujours trop">
                 </div>
             </div>
 
@@ -83,7 +120,7 @@
             <div class="form-group row"> 
                 <label for="description" class="col-md-4 control-label"> Description: </label>
                 <div class="col-md-6">
-                <input type="textarea" class="form-control" id="description" name="description" cols="70" rows="3">
+                <textarea type="textarea" class="form-control" id="description" name="description" cols="70" rows="3" placeholder="lâchez-vous"></textarea>
                 </div>
             </div>            
                     

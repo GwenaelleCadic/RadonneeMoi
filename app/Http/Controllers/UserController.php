@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\User;
 use App\Marche;
+use App\Country;
+use App\Region;
 use Image;
 use Auth;
 use App\Event;
@@ -31,57 +33,10 @@ class UserController extends Controller
         $marche=Marche::all();
 		return redirect()->back();
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('inscription');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $this->validate($request,[
-            'pseudo'=>'required|unique:users',
-            'mdp'=>'required',
-            'email'=>'required|email|unique:users',
-        ]);
-
-        $user=new User;
-
-            $user->pseudo = $request->input('pseudo');
-            $user->mdp = bcrypt($request->input('mdp'));
-            $user->email = $request->input('email');
-            $user->niveau = $request->input('niveau');
-            $user->region=$request->input('region');
-
-            $user->save();
-
-            $marche=Marche::all();
-            return view('accueil')->with('marches',$marche);
-
-    }
-
-    /**
-     * Display the specified resource.
+     * Affichage du profil d'un utilisateur.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -95,7 +50,7 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Form de modification d'un profil utilisateur.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -104,8 +59,10 @@ class UserController extends Controller
     {
         if(Auth::user()){
             $user=User::find($id);
+            $countries=Country::all();
+            $regions=Region::where('country_id','=',$user->region->country_id)->get();
             if($user){
-            return view('updateUser')->withUser($user);
+            return view('updateUser')->withUser($user)->with('countries',$countries)->with('regions',$regions);
             }else{
                 return redirect()->back();
             }
@@ -115,7 +72,7 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Enregistrement de la mise-à-jour d'un profil utilisateur.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -123,10 +80,10 @@ class UserController extends Controller
      */
     public function update(Request $request)
     {
-        // $this->validate($request,[
-        //     'pseudo'=>'required|unique:users,pseudo,' . $id,
-        //     'email'=>'required|email|unique:users,email,'.$id,
-        // ]);
+        $this->validate($request,[
+            'name'=>'required|unique:users,name,' . $request->input('id'),
+            'email'=>'required|email|unique:users,email,'.$request->input('id'),
+        ]);
         
         $user=User::find($request->input('id'));
         if($user)
@@ -134,12 +91,13 @@ class UserController extends Controller
             $user->name = $request->input('name');
             $user->email = $request->input('email');
             $user->niveau = $request->input('niveau');
-            $user->region=$request->input('region');
+            $user->region_id=$request->input('region');
             $user->description=$request->input('description');
             $user->save();
             $marche=Marche::all();
             return redirect('home')->withOk("L'utilisateur".$request->input('name'). "a été modifié.")->with('marches',$marche);
-        }else{
+        }else
+        {
             echo $id;
         }
 
@@ -148,7 +106,7 @@ class UserController extends Controller
 
 
     /**
-     * Remove the specified resource from storage.
+     * Destruction de son propre profil.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

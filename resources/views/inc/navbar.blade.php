@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color: #84817f;">
-  <div class="container">
+    <div class="container">
       <a class="navbar-brand" href="{{ url('/rando') }}">
-        <img src="{{asset('../resources/images/logo.png')}}" style="position: absolute;width:100px; height:80px;margin-right: 25px;"> 
+        <img src="{{asset('../resources/images/logo.png')}}" style="position: relative;width: 70px; height: 60px; margin-right: 25px;"> 
           
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -18,7 +18,7 @@
           @guest
             @if (Route::has('register'))
                 <ul class="navbar-nav ml-auto">
-              <a class="nav-link" href="{{ asset('rando/') }}">Accueil</a>                
+              <a class="nav-link active" href="{{ asset('rando/') }}">Accueil</a>                
               <a class="nav-link" href="{{asset('search')}}">Randonnées</a>
             @endif
             @else
@@ -35,7 +35,7 @@
                   </li>
                   @if (Route::has('register'))
                       <li class="nav-item">
-                          <a class="nav-link" href="{{ route('register') }}">Inscription</a>
+                          <a class="nav-link" href="{{ asset('/country')}}">Inscription</a>
                       </li>
                   @endif
               @else
@@ -48,12 +48,12 @@
 
                       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                           <a class="dropdown-item" href="{{ asset('home') }}">
-                             Profile
+                             Profil
                           </a>
                           <a class="dropdown-item" href="{{ route('logout') }}"
                              onclick="event.preventDefault();
                                            document.getElementById('logout-form').submit();">
-                              Déconnection
+                              Déconnexion
                           </a>
 
                           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -67,3 +67,6 @@
       </div>
   </div>
 </nav>
+<script>
+    
+</script>  

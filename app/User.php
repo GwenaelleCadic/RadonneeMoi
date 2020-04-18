@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','niveau','region','groupe',
+        'name', 'email', 'password','niveau','region_id','groupe','avatar',
     ];
 
     /**
@@ -45,11 +45,15 @@ class User extends Authenticatable
         return $this->hasMany(MarcheFlash::class);
     }
 
-    public function marche(){
+    public function marches(){
         return $this->hasMany(Marche::class);
     }
 
     public function historiques(){
         return $this->hasMany(Historique::class);
+    }
+
+    public function region(){
+        return $this->belongsTo(Region::class);
     }
 }

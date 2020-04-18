@@ -1,6 +1,6 @@
 ﻿
-insert into pays values
-(1,'France', 'pesquet');
+insert into countries values
+(1,'France');
 
 insert into regions values
 (1,1,'Auvergne-Rhône-Alpes');
@@ -37,4 +37,4 @@ insert into regions values
 insert into regions values
 (17,1,'La Réunion');
 insert into regions values
-(16,1,'Mayotte');
+(18,1,'Mayotte');

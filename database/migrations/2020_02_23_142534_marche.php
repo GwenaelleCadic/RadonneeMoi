@@ -16,11 +16,11 @@ class Marche extends Migration
         Schema::create('marches', function(Blueprint $table) {
             $table->increments('id');
             $table->string('nom',255)->unique();
-            $table->string('niveau',30);
+            $table->string('niveau');
             $table->time('temps',4)->default(0);
             $table->string('type');
-            $table->string('description');            
-            $table->string('region')->default('null');
+            $table->string('description');
+            $table->integer('region_id')->unsigned();
             $table->integer('denivele')->default(0);
             $table->integer('distance')->default(0);
             $table->integer('user_id')->unsigned();
@@ -28,6 +28,7 @@ class Marche extends Migration
         });
 
         Schema::table('marches',function(Blueprint $table){
+            $table->foreign('region_id')->references('id')->on('regions')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
@@ -39,6 +40,7 @@ class Marche extends Migration
      */
     public function down()
     {
+        Schema::dropForeign(['region_id']);
         Schema::drop('marches');
     }
 }

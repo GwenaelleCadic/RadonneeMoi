@@ -15,6 +15,5 @@ class CountryController extends Controller
     public function getStates($id){
         $states=Region::where('country_id',$id)->get();
         return $states;
-        //return json_encode($states);
     }
 }

@@ -25,4 +25,8 @@ class Marche extends Model
     public function historiques(){
         return $this->hasMany(Historique::class);
     }
+
+    public function region(){
+        return $this->belongsTo(Region::class);
+    }
 }

@@ -64,7 +64,7 @@ ul {
   }
 .titreBarre
 {
-    color:#2d6637;
+    color: rgba(0,0,0,.5);
     margin-top: 4px;
     margin-left:20px;
 }
@@ -267,7 +267,8 @@ h2.contenue {
     border: solid;
     border-width: 1px;
     border-radius: 5px;
-    border-color: #2d6637;
+    border-color: white;
+    padding:10px;
 }
 
 
@@ -362,10 +363,14 @@ h2.contenue {
 
 
 /* Home */
+.home
+{
+  color: white;
+  margin-top: 20px;
+}
 .homeBox{
   margin-top: 10px;
-  border: solid 1px;
-  /* box-sizing: content-box; */
+  border: solid 1px white;
   widows: 90%;
   margin-right:auto;
   margin-left:auto;
@@ -418,7 +423,7 @@ h2.contenue {
 .newRandoBox {
   padding: 20px 10px;
   margin-bottom: 20px;
-  border: solid 1px;
+  border: solid 1px white;
   margin-top: 10px;
 }
 
@@ -427,11 +432,12 @@ h2.contenue {
   width: 90%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 5px;
+  margin-top: 15px;
   margin-bottom: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius:5px;
 }
 
 .modifBouton
@@ -467,11 +473,11 @@ h2.contenue {
 
 .photoProf {
   width: auto;
-  height: 200px;
+  height: 220px;
   float: left;
   margin-right: 25px;
   border-radius: 50%;
-  margin-top: 25px;
+  margin-top: 40px;
 }
 
 #MyForm{

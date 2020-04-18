@@ -4,9 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Country extends Model //Pays
+class Country extends Model
 {
-    protected $table="countries"; //à changer once migration done
+    protected $table="countries";
     
     public $timestamps=false;
+
+    public function regions(){
+        return $this->hasMany(Region::class);
+    }
 }

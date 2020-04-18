@@ -53,9 +53,8 @@ class EventsController extends Controller
 
     $flash->save();
 
-        //flash->marche_id->associate($marche);
-        //flash->user_id->associate($user);
-        return('rando_ok');
+    $events = Event::all()->sortBy('rdv');
+    return view('events')->with('events',$events);
     }
 
     /**

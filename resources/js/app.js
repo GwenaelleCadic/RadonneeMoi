@@ -30,3 +30,9 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
 });
+
+// Event listeners
+$('a.nav-link').on('click', function(e) {
+    $('a.nav-link').removeClass('active');
+    $(this).addClass('active');
+});

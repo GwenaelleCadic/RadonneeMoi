@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\DB;
 use App\Repositories\MarcheRepository;
 use App\Marche;
 use App\User;
+use App\Country;
+use App\Region;
 class RandoController extends Controller
 {
 	protected $marcheRepository;
@@ -18,15 +20,15 @@ class RandoController extends Controller
 		$this->marcheRepository = $marcheRepository;
 	}
 
-
+	// Enregistrement d'une marche
 	public function store(Request $request)
 	{
+		
 		//On ne permet l'enregistrement que si toutes les données sont entrées
 		$this->validate($request, [
             'nom'=>'required|max:255',
             'niveau'=>'required|max:30',
 			'temps'=>'required',
-			'type'=>'required',
 			'region'=>'required',
 			'denivele'=>'required',
 			'distance'=>'required',
@@ -36,11 +38,11 @@ class RandoController extends Controller
 
 		//Creation de la Marche à partir des données entrée
 		$user=User::find($request->user_id);
-		$marche= new Marche;
+        $region=Region::find($request->input('region'));
 		
+		$marche= new Marche;
 		$marche->nom = $request->input('nom');
 		$marche->niveau = $request->input('niveau');
-		$marche->region = $request->input('region');
 		$marche->description = $request->input('description');
 		$marche->denivele= $request->input('denivele');
 		$marche->distance= $request->input('distance');
@@ -54,107 +56,186 @@ class RandoController extends Controller
 		{
 			$marche->type='j';
 		}
+		// Association avec les tables étrangères
 		$marche->user()-> associate($user);
+		$marche->region()->associate($region);
 		$marche->save();
 
 		return view('rando_ok');
 	}
+
+	// Affichage des marches
 	public function index()
 	{
-		$marche=Marche::all();/*
-		$marche=DB::table('marches')->find(1);
-		print_r($marche);
-		/*echo "I am here";*/
+		$marche=Marche::all();
 		return view('accueil')->with('marches',$marche);
 	}
 
+	// Recherche d'une marche
 	public function searchRando(Request $request)
 	{
-		if($request->niveau=='none')
+		$countries=Country::all();
+		if($request->region=='none')
 		{
-			if($request->temps=='none')
+			if($request->niveau=='none')
 			{
-				$marche= Marche::where('nom','LIKE','%'.$request->search.'%')
-					->orWhere('description','LIKE','%'.$request->search.'%')
-					->orWhere('region','LIKE','%'.$request->search.'%');
+				if($request->temps=='none')
+				{
+					$marches= Marche::where('nom','LIKE','%'.$request->search.'%')
+						->orWhere('description','LIKE','%'.$request->search.'%');
+				}
+				else
+				{
+					if($request->temps=='dj')
+					{
+						$marches= Marche::where('temps','<=',time('05:00'))
+						->where('niveau','LIKE','%'.$request->niveau)
+						->where('nom','LIKE','%'.$request->search.'%')
+						->orWhere('description','LIKE','%'.$request->search.'%');
+					}
+					else{
+						$marches= Marche::where('temps','>',time('05:00'))
+						->where('nom','LIKE','%'.$request->search.'%')
+						->orWhere('description','LIKE','%'.$request->search.'%');
+					}
+				}
 			}
 			else
 			{
-				if($request->temps=='dj')
+				if($request->temps=='none')
 				{
-					$marche= Marche::where('temps','<=',time('05:00'))
-					->where('niveau','LIKE','%'.$request->niveau)
-					->where('nom','LIKE','%'.$request->search.'%')
-					->orWhere('description','LIKE','%'.$request->search.'%')
-					->orWhere('region','LIKE','%'.$request->search.'%');
+					$marches= Marche::where('niveau','LIKE','%'.$request->niveau.'%')
+						->where('nom','LIKE','%'.$request->search.'%')
+						->orWhere('description','LIKE','%'.$request->search.'%');
 				}
-				else{
-					$marche= Marche::where('temps','>',time('05:00'))
-					->where('nom','LIKE','%'.$request->search.'%')
-					->orWhere('description','LIKE','%'.$request->search.'%')
-					->orWhere('region','LIKE','%'.$request->search.'%');
+				else
+				{
+					if($request->temps=='dj')
+					{
+						$marches= Marche::where('niveau','LIKE','%'.$request->niveau.'%')
+						->where('temps','<=',time('05:00'))
+						->where('niveau','LIKE','%'.$request->niveau)
+						->where('nom','LIKE','%'.$request->search.'%')
+						->orWhere('description','LIKE','%'.$request->search.'%');
+					}
+					else{
+						$marches= Marche::where('niveau','LIKE','%'.$request->niveau.'%')
+						->where('temps','>',time('05:00'))
+						->where('nom','LIKE','%'.$request->search.'%')
+						->orWhere('description','LIKE','%'.$request->search.'%');
+					}
 				}
 			}
 		}
 		else
 		{
-			if($request->temps=='none')
+			if($request->niveau=='none')
 			{
-				$marche= Marche::where('niveau','LIKE','%'.$request->niveau.'%')
-					->where('nom','LIKE','%'.$request->search.'%')
-					->orWhere('description','LIKE','%'.$request->search.'%')
-					->orWhere('region','LIKE','%'.$request->search.'%');
+				if($request->temps=='none')
+				{
+					$marches= Marche::where('nom','LIKE','%'.$request->search.'%')
+						->orWhere('description','LIKE','%'.$request->search.'%')
+						->orWhere('region_id','=','%'.$request->region.'%');
+				}
+				else
+				{
+					if($request->temps=='dj')
+					{
+						$marches= Marche::where('temps','<=',time('05:00'))
+						->where('niveau','LIKE','%'.$request->niveau)
+						->where('nom','LIKE','%'.$request->search.'%')
+						->orWhere('description','LIKE','%'.$request->search.'%')
+						->orWhere('region_id','=','%'.$request->region.'%');
+					}
+					else{
+						$marches= Marche::where('temps','>',time('05:00'))
+						->where('nom','LIKE','%'.$request->search.'%')
+						->orWhere('description','LIKE','%'.$request->search.'%')
+						->orWhere('region_id','=','%'.$request->region.'%');
+					}
+				}
 			}
 			else
 			{
-				if($request->temps=='dj')
+				if($request->temps=='none')
 				{
-					$marche= Marche::where('niveau','LIKE','%'.$request->niveau.'%')
-					->where('temps','<=',time('05:00'))
-					->where('niveau','LIKE','%'.$request->niveau)
-					->where('nom','LIKE','%'.$request->search.'%')
-					->orWhere('description','LIKE','%'.$request->search.'%')
-					->orWhere('region','LIKE','%'.$request->search.'%');
+					$marches= Marche::where('niveau','LIKE','%'.$request->niveau.'%')
+						->where('nom','LIKE','%'.$request->search.'%')
+						->orWhere('description','LIKE','%'.$request->search.'%')
+						->orWhere('region_id','=','%'.$request->region.'%');
 				}
-				else{
-					$marche= Marche::where('niveau','LIKE','%'.$request->niveau.'%')
-					->where('temps','>',time('05:00'))
-					->where('nom','LIKE','%'.$request->search.'%')
-					->orWhere('description','LIKE','%'.$request->search.'%')
-					->orWhere('region','LIKE','%'.$request->search.'%');
+				else
+				{
+					if($request->temps=='dj')
+					{
+						$marches= Marche::where('niveau','LIKE','%'.$request->niveau.'%')
+						->where('temps','<=',time('05:00'))
+						->where('niveau','LIKE','%'.$request->niveau)
+						->where('nom','LIKE','%'.$request->search.'%')
+						->orWhere('description','LIKE','%'.$request->search.'%')
+						->orWhere('region_id','=','%'.$request->region.'%');
+					}
+					else{
+						$marches= Marche::where('niveau','LIKE','%'.$request->niveau.'%')
+						->where('temps','>',time('05:00'))
+						->where('nom','LIKE','%'.$request->search.'%')
+						->orWhere('description','LIKE','%'.$request->search.'%')
+						->orWhere('region_id','=','%'.$request->region.'%');
+					}
 				}
 			}
 		}
-		return view('search')->with('marches',$marche);
+		if($marches->exists())
+		{
+			$sortie=$marches->get();
+		return view('search')->with('marches',$sortie)->with('countries',$countries);
+		}
+		else
+		{
+			return redirect()->back()->with('message', "Nous n'avons rien trouvé rentrant dans vos recherches")->with('countries',$countries);
+		}
 	}
 
+	// Affichage de la page de recherche d'une marche
 	public function search()
 	{
 		$marche=[];
-		return view('search')->with('marches',$marche);
+		$countries=Country::all();
+		return view('search')->with('marches',$marche)->with('countries',$countries);
 	}
 
+	// Création d'une marche
 	public function create()
 	{
-		return view('newRando');
+        $countries=Country::all();
+		return view('newRando')->with("countries",$countries);
 	}
+
+	// Affichage d'une marche
 	public function show($id)
 	{
 		$marche=Marche::find($id);
 		return view('affichage')->with('marches',$marche);
 	}
 
+	// Affichage de la page de modification d'une rando
 	public function edit($id)
 	{
 		$marche=Marche::find($id);
-		if($marche){
-			return view('updateRando')->with('marches',$marche);;
-		}
-		else{
-			return redirect()->back();
-		}
+		$country=Country::where('nom','=',$marche->country)->get();
+		$countries=Country::all();
+		return($country);
+		// $regions=Region::where('country_id','=',$country->id)->get();
+		// if($marche){
+		// 	return view('updateRando')->with('marches',$marche)->with('countries',$countries);
+		// 	// ->with('regions',$regions);
+		// }
+		// else{
+		// 	return redirect()->back();
+		// }
 	}
 
+	// Enregistrement des modifications faites sur une marche
 	public function update(Request $request)
 	{
 		$marche=Marche::find($request->input('id'));
@@ -173,12 +254,15 @@ class RandoController extends Controller
             $marche=Marche::all();
             return redirect()->back();
             // return redirect('user')->withOk("L'utilisateur".$request->input('pseudo'). "a été modifié.");
-        }else{
+		}else
+		{
             echo $id;
         }
 
 
 	}
+
+	// Suppression d'une marche
 	public function destroy(Request $request)
 	{
 		$marche=Marche::find($request->input('id'));
