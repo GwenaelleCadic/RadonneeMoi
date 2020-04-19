@@ -86,18 +86,9 @@ class RandoController extends Controller
 				}
 				else
 				{
-					if($request->temps=='dj')
-					{
-						$marches= Marche::where('temps','<=',time('05:00'))
-						->where('niveau','LIKE','%'.$request->niveau)
-						->where('nom','LIKE','%'.$request->search.'%')
-						->orWhere('description','LIKE','%'.$request->search.'%');
-					}
-					else{
-						$marches= Marche::where('temps','>',time('05:00'))
-						->where('nom','LIKE','%'.$request->search.'%')
-						->orWhere('description','LIKE','%'.$request->search.'%');
-					}
+					$marches= Marche::where('type','=',$request->temps)
+					->where('nom','LIKE','%'.$request->search.'%')
+					->orWhere('description','LIKE','%'.$request->search.'%');
 				}
 			}
 			else
@@ -110,20 +101,10 @@ class RandoController extends Controller
 				}
 				else
 				{
-					if($request->temps=='dj')
-					{
-						$marches= Marche::where('niveau','LIKE','%'.$request->niveau.'%')
-						->where('temps','<=',time('05:00'))
-						->where('niveau','LIKE','%'.$request->niveau)
-						->where('nom','LIKE','%'.$request->search.'%')
-						->orWhere('description','LIKE','%'.$request->search.'%');
-					}
-					else{
-						$marches= Marche::where('niveau','LIKE','%'.$request->niveau.'%')
-						->where('temps','>',time('05:00'))
-						->where('nom','LIKE','%'.$request->search.'%')
-						->orWhere('description','LIKE','%'.$request->search.'%');
-					}
+					$marches= Marche::where('niveau','LIKE','%'.$request->niveau.'%')
+					->where('type','=',$request->temps)
+					->where('nom','LIKE','%'.$request->search.'%')
+					->orWhere('description','LIKE','%'.$request->search.'%');
 				}
 			}
 		}
@@ -134,25 +115,15 @@ class RandoController extends Controller
 				if($request->temps=='none')
 				{
 					$marches= Marche::where('nom','LIKE','%'.$request->search.'%')
-						->orWhere('description','LIKE','%'.$request->search.'%')
-						->orWhere('region_id','=','%'.$request->region.'%');
+					->orWhere('description','LIKE','%'.$request->search.'%')
+					->orWhere('region_id','=','%'.$request->region.'%');
 				}
 				else
 				{
-					if($request->temps=='dj')
-					{
-						$marches= Marche::where('temps','<=',time('05:00'))
-						->where('niveau','LIKE','%'.$request->niveau)
-						->where('nom','LIKE','%'.$request->search.'%')
-						->orWhere('description','LIKE','%'.$request->search.'%')
-						->orWhere('region_id','=','%'.$request->region.'%');
-					}
-					else{
-						$marches= Marche::where('temps','>',time('05:00'))
-						->where('nom','LIKE','%'.$request->search.'%')
-						->orWhere('description','LIKE','%'.$request->search.'%')
-						->orWhere('region_id','=','%'.$request->region.'%');
-					}
+					$marches= Marche::where('type','=',$request->temps)
+					->where('nom','LIKE','%'.$request->search.'%')
+					->orWhere('description','LIKE','%'.$request->search.'%')
+					->orWhere('region_id','=','%'.$request->region.'%');
 				}
 			}
 			else
@@ -160,28 +131,17 @@ class RandoController extends Controller
 				if($request->temps=='none')
 				{
 					$marches= Marche::where('niveau','LIKE','%'.$request->niveau.'%')
-						->where('nom','LIKE','%'.$request->search.'%')
-						->orWhere('description','LIKE','%'.$request->search.'%')
-						->orWhere('region_id','=','%'.$request->region.'%');
+					->where('nom','LIKE','%'.$request->search.'%')
+					->orWhere('description','LIKE','%'.$request->search.'%')
+					->orWhere('region_id','=','%'.$request->region.'%');
 				}
 				else
 				{
-					if($request->temps=='dj')
-					{
 						$marches= Marche::where('niveau','LIKE','%'.$request->niveau.'%')
-						->where('temps','<=',time('05:00'))
-						->where('niveau','LIKE','%'.$request->niveau)
+						->where('type','=',$request->temps)
 						->where('nom','LIKE','%'.$request->search.'%')
 						->orWhere('description','LIKE','%'.$request->search.'%')
 						->orWhere('region_id','=','%'.$request->region.'%');
-					}
-					else{
-						$marches= Marche::where('niveau','LIKE','%'.$request->niveau.'%')
-						->where('temps','>',time('05:00'))
-						->where('nom','LIKE','%'.$request->search.'%')
-						->orWhere('description','LIKE','%'.$request->search.'%')
-						->orWhere('region_id','=','%'.$request->region.'%');
-					}
 				}
 			}
 		}
