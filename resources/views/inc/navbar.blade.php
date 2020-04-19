@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color: #84817f;">
     <div class="container">
       <a class="navbar-brand" href="{{ url('/rando') }}">
-        <img src="{{asset('./resources/images/logo.png')}}" style="position: relative;width: 70px; height: 60px; margin-right: 25px;"> 
+        <img src="{{asset('/images/logo.png')}}" style="position: relative;width: 70px; height: 60px; margin-right: 25px;"> 
           
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -18,15 +18,15 @@
           @guest
             @if (Route::has('register'))
                 <ul class="navbar-nav ml-auto">
-              <a class="nav-link active" href="{{ asset('./public/rando/') }}">Accueil</a>                
-              <a class="nav-link" href="{{asset('./public/search')}}">Randonnées</a>
+              <a class="nav-link active" href="{{ asset('rando/') }}">Accueil</a>                
+              <a class="nav-link" href="{{asset('search')}}">Randonnées</a>
             @endif
             @else
              <ul class="navbar-nav ml-auto">
-                <a class="nav-link" href="{{ asset('./public/rando/') }}">Accueil</a>  
-                <a class="nav-link" href="{{ asset('./public/rando/create') }}">Tracer</a>  
-                <a class="nav-link" href="{{asset('./public/search')}}">Randonnées</a>
-                <a class="nav-link" href="{{asset('./public/events')}}">Evénements</a>
+                <a class="nav-link" href="{{ asset('rando/') }}">Accueil</a>  
+                <a class="nav-link" href="{{ asset('rando/create') }}">Tracer</a>  
+                <a class="nav-link" href="{{asset('search')}}">Randonnées</a>
+                <a class="nav-link" href="{{asset('events')}}">Evénements</a>
         @endguest
               <!-- Authentication Links -->
               @guest
@@ -35,19 +35,19 @@
                   </li>
                   @if (Route::has('register'))
                       <li class="nav-item">
-                          <a class="nav-link" href="{{ asset('./public/country')}}">Inscription</a>
+                          <a class="nav-link" href="{{ asset('/country')}}">Inscription</a>
                       </li>
                   @endif
               @else
               
                   <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="titreBarre dropdown-toggle" href="#" role="button" style="position:relative;padding-left:50px" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        <img src="{{ asset('./public/uploads/avatars/')}}/{{Auth::user()->avatar}}" style="width:32px; height:32px; position:absolute; top:10px;left:10px; border-radius:50%; margin-right: 25px;"> 
+                        <img src="{{ asset('uploads/avatars/')}}/{{Auth::user()->avatar}}" style="width:32px; height:32px; position:absolute; top:10px;left:10px; border-radius:50%; margin-right: 25px;"> 
                         {{ Auth::user()->name }} <span class="caret"></span>
                     </a>
 
                       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="{{ asset('./public/home') }}">
+                          <a class="dropdown-item" href="{{ asset('home') }}">
                              Profil
                           </a>
                           <a class="dropdown-item" href="{{ route('logout') }}"
