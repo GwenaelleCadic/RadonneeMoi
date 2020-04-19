@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','niveau','region_id','groupe','avatar',
+        'id','name', 'email', 'password','niveau','region_id','groupe','avatar',
     ];
 
     /**
@@ -37,6 +37,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $primaryKey = 'id';
+    public $incrementing = false;
     public function comments(){
         return $this->hasMany(Comment::class);
     }

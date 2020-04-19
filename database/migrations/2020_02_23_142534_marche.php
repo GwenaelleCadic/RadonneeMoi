@@ -40,7 +40,7 @@ class Marche extends Migration
      */
     public function down()
     {
-        Schema::dropForeign(['region_id']);
+        // Schema::dropForeign(['region_id']);
         Schema::drop('marches');
     }
 }

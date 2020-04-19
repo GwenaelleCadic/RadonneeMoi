@@ -65,7 +65,18 @@ class RegisterController extends Controller
     {
         //On associe la région
         $region=Region::find($data);
+        //Récupération du dernier id des Users
+        $lastUserId=User::max('id');
+        if($lastUserId==null)
+        {
+            $id=1;
+        }
+        else
+        {
+            $id=$lastUserId + 1;
+        }
         return User::create([
+            'id'=>$id,
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
