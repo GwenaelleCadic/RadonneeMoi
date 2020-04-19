@@ -13,8 +13,8 @@
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/','RandoController@index');
-Route::get('country','CountryController@index');
 Route::get('country/getStates/{id}','CountryController@getStates');
+Route::get('country','CountryController@index');
 Route::resource('rando','RandoController');
 Route::resource('user','UserController');
 Auth::routes();

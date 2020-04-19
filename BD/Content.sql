@@ -3,38 +3,21 @@ insert into countries values
 (1,'France');
 
 insert into regions values
-(1,1,'Auvergne-Rhône-Alpes');
-insert into regions values
-(2,1,'Bourgogne-Franche-Comté');
-insert into regions values
-(3,1,'Bretagne');
-insert into regions values
-(4,1,'Centre-Val de Loire');
-insert into regions values
-(5,1,'Corse');
-insert into regions values
-(6,1,'Grand Est');
-insert into regions values
-(7,1,'Hauts-de-France');
-insert into regions values
-(8,1,'Ile-de-France');
-insert into regions values
-(9,1,'Normandie');
-insert into regions values
-(10,1,'Nouvelle-Aquitaine');
-insert into regions values
-(11,1,'Occitanie');
-insert into regions values
-(12,1,'Pays de la Loire');
-insert into regions values
-(13,1,"Provence-Alpes-Côtes d'Azur");
-insert into regions values
-(14,1,'Guadeloupe');
-insert into regions values
-(15,1,'Martinique');
-insert into regions values
-(16,1,'Guyane');
-insert into regions values
-(17,1,'La Réunion');
-insert into regions values
+(1,1,'Auvergne-Rhône-Alpes'),
+(2,1,'Bourgogne-Franche-Comté'),
+(3,1,'Bretagne'),
+(4,1,'Centre-Val de Loire'),
+(5,1,'Corse'),
+(6,1,'Grand Est'),
+(7,1,'Hauts-de-France'),
+(8,1,'Ile-de-France'),
+(9,1,'Normandie'),
+(10,1,'Nouvelle-Aquitaine'),
+(11,1,'Occitanie'),
+(12,1,'Pays de la Loire'),
+(13,1,'Provence-Alpes-Côtes d Azur'),
+(14,1,'Guadeloupe'),
+(15,1,'Martinique'),
+(16,1,'Guyane'),
+(17,1,'La Réunion'),
 (18,1,'Mayotte');
