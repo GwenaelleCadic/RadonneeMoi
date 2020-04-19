@@ -64,7 +64,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         //On associe la région
-        $region=Region::find($data);
+        // $region=Region::find($data['region']);
         //Récupération du dernier id des Users
         $lastUserId=User::max('id');
         if($lastUserId==null)
