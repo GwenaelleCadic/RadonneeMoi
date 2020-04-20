@@ -25,7 +25,7 @@
                 </div>
         </div>
 
-        <small>Date du {{$marches->created_at}},   Modifié le {{$marches->updated_at}} par <a href="../../user/{{$marche->user_id}}">{{$marches->user->name}}</a></small>    
+        <small>Date du {{$marches->created_at}},   Modifié le {{$marches->updated_at}} par <a href="../../user/{{$marches->user_id}}">{{$marches->user->name}}</a></small>    
         {{-- Fonction d'apparition de l'encart "événement" --}}
         <script>
                 $(document).ready(function(){
