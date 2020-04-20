@@ -39,22 +39,38 @@
     {{-- Affichage des marches/événements rentrant dans les critéres de l'utilisateur --}}
     <h3 class='home'>Cela pourrait vous intéresser :</h3>
     <div class="homeBox2">
-        @if(count($events1 ?? '')>0)        
-            @foreach($events1 as $event)
-            <div class="homeMarche">
-                <div class="homeMarcheTitre">
-                    <a href="rando/{{$event->marche_id}}" class='vert'>{{$event->marche->nom}}</a>
+        @if(count($events1 ?? '')>0)
+            @if(Auth::user()->group=='true')      
+                @foreach($events1 as $event)
+                <div class="homeMarche">
+                    <div class="homeMarcheTitre">
+                        <a href="rando/{{$event->marche_id}}" class='vert'>{{$event->marche->nom}}</a>
+                    </div>
+                    <div class="presentation">
+                        <a class="affichageInfoMarche"><strong class="marron">Distance:</strong> {{$event->marche->distance}} m</a>
+                        <a class="affichageInfoMarche"><strong class="marron">Dénivelé:</strong> {{$event->marche->denivele}}m</a>
+                        <a class="affichageInfoMarche"><strong class="marron">Niveau:</strong> {{$event->marche->niveau}}</a>
+                        <a class="affichageInfoMarche"><strong class="marron">Lieu:</strong> {{$event->marche->region->country->nom}},</a>
+                        <a class="affichageInfoMarche"> {{$event->marche->region->nom}}</a>
+                    </div>
                 </div>
-                <div class="presentation">
-                    <a class="affichageInfoMarche"><strong class="marron">Distance:</strong> {{$event->marche->distance}} m</a>
-                    <a class="affichageInfoMarche"><strong class="marron">Dénivelé:</strong> {{$event->marche->denivele}}m</a>
-                    <a class="affichageInfoMarche"><strong class="marron">Niveau:</strong> {{$event->marche->niveau}}</a>
-                    <a class="affichageInfoMarche"><strong class="marron">Lieu:</strong> {{$event->marche->region->country->nom}},</a>
-                    <a class="affichageInfoMarche"> {{$event->marche->region->nom}}</a>
-                </div>
-            </div>
-            @endforeach
-        
+                @endforeach
+            @else
+                @foreach($events1 as $event)
+                        <div class="homeMarche">
+                            <div class="homeMarcheTitre">
+                                <a href="rando/{{$event->id}}" class='vert'>{{$event->nom}}</a>
+                            </div>
+                            <div class="presentation">
+                                <a class="affichageInfoMarche"><strong class="marron">Distance:</strong> {{$event->distance}} m</a>
+                                <a class="affichageInfoMarche"><strong class="marron">Dénivelé:</strong> {{$event->denivele}}m</a>
+                                <a class="affichageInfoMarche"><strong class="marron">Niveau:</strong> {{$event->niveau}}</a>
+                                <a class="affichageInfoMarche"><strong class="marron">Lieu:</strong> {{$event->region->country->nom}},</a>
+                                <a class="affichageInfoMarche"> {{$event->region->nom}}</a>
+                            </div>
+                        </div>
+                        @endforeach
+            @endif
         @else
             Malheureusement, rien ne semble sortir du lot pour vous
         @endif
