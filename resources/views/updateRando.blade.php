@@ -34,8 +34,8 @@
                             <select name="region" id="region" class="form-control">
                                 <option value="">Region</option>
                                 {{-- On affiche la région déjà rentrée --}}
-                                {@foreach($regions as $region)
-                                    @if($region==$marches->region)
+                                @foreach($regions as $region)
+                                    @if($region->nom==$marches->region->nom)
                                         <option value="{{$region->id}}" selected>{{$region->nom}}</option>
                                     @else
                                         <option value="{{$region->id}}">{{$region->nom}}</option>

@@ -200,13 +200,20 @@ class RandoController extends Controller
 	public function update(Request $request)
 	{
 		$marche=Marche::find($request->input('id'));
-        if($marche)
-        {
+
             $marche->nom = $request->input('nom');
-            $marche->region = $request->input('region');
+            $marche->region_id = $request->input('region');
             $marche->niveau = $request->input('niveau');
 			$marche->temps=$request->input('temps');
-			$marche->type=$request->input('type');
+			// On met à jour le type
+			if(input('temps')<='04:00')
+			{
+				$marche->type='dj';
+			}
+			else
+			{
+				$marche->type='j';
+			}
             $marche->denivele=$request->input('denivele');
             $marche->distance=$request->input('distance');
             $marche->description=$request->input('description');
@@ -214,11 +221,7 @@ class RandoController extends Controller
             $marche->save();
             $marche=Marche::all();
             return redirect()->back();
-            // return redirect('user')->withOk("L'utilisateur".$request->input('pseudo'). "a été modifié.");
-		}else
-		{
-            echo $id;
-        }
+            
 
 
 	}
