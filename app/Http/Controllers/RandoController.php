@@ -115,7 +115,7 @@ class RandoController extends Controller
 			{
 				if($request->temps=='none')
 				{
-					$marches= Marche::where('region_id','=','%'.$request->region.'%');
+					$marches= Marche::where('region_id','=',$request->region);
 					$marches=$marches->where('nom','LIKE','%'.$request->search.'%')
 					->orWhere('description','LIKE','%'.$request->search.'%');
 				}
