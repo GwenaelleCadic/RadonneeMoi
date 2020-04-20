@@ -12,6 +12,7 @@
                     <a class='contenue'>{{ $users->region->nom }}</a>
                     <a class='contenue'>{{ $users->groupe }}</a>    
                 </div>
+                <div class="descrUser">{{$users->description}}</div> 
                 <div class="homeBox2">
                     Events proposés:
                     @foreach($events as $event)
@@ -27,7 +28,7 @@
                                     <a class="affichageInfoMarche"><strong class="marron">Lieu:</strong>{{$event->marche->region->country->nom}},</a>
                                     <a class="affichageInfoMarche">{{$event->marche->region->nom}}</a>
                                 </div>
-                                <div class="descrUser">{{Auth::user()->description}}</div> 
+                                
                             </div>
                         @endif
                     @endforeach
