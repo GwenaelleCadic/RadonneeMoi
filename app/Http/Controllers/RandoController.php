@@ -206,7 +206,7 @@ class RandoController extends Controller
             $marche->niveau = $request->input('niveau');
 			$marche->temps=$request->input('temps');
 			// On met à jour le type
-			if(input('temps')<='04:00')
+			if($request->input('temps')<='04:00')
 			{
 				$marche->type='dj';
 			}
