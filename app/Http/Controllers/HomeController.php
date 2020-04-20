@@ -86,7 +86,6 @@ class HomeController extends Controller
         {
             $events2=[];
         }
-        // return($events1);
         return view('home')->with('events1',$events1)->with('marches',$marches)->with('events2',$events2)->with('historiques',$historiques);
     }
 }
