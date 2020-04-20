@@ -21,7 +21,8 @@
                             <select name="country" id="country" class="form-control">
                                 <option value="">Pays</option>
                                 @foreach($countries as $country)
-                                    @if($marches->country==$country->nom)
+                                {{-- On affiche le pays déjà rentrée --}}
+                                    @if($marches->region->country==$country)
                                         <option value="{{$country->id}}" selected>{{$country->nom}}</option>
                                     @else
                                         <option value="{{$country->id}}">{{$country->nom}}</option>
@@ -32,16 +33,18 @@
                             <strong for="region">Région</strong>
                             <select name="region" id="region" class="form-control">
                                 <option value="">Region</option>
-                                {{-- @foreach($regions as $region)
-                                    @if($region->nom==$marches->region)
+                                {{-- On affiche la région déjà rentrée --}}
+                                {@foreach($regions as $region)
+                                    @if($region==$marches->region)
                                         <option value="{{$region->id}}" selected>{{$region->nom}}</option>
                                     @else
                                         <option value="{{$region->id}}">{{$region->nom}}</option>
                                     @endif
-                                @endforeach                           --}}
+                                @endforeach
                             </select>
                         </div>    
                     </div>
+                    {{-- Gestion des dropdown --}}
                     <script>
                         $(document).ready(function(){
                             $('select[name="country"]').on('change',function(){
@@ -67,7 +70,8 @@
                             })
                         })
                     </script>
-
+                    
+                    {{-- le niveau --}}
                     <div class="form-group row">
                         <label for="niveau" class="col-md-4 control-label"> Niveau</label>
                         <div class="button-wrap col-md-6">
@@ -86,7 +90,7 @@
                     </div>
                     
                     <div class="form-group row">
-                        {{-- On ajoute un temps de marche --}}              
+                        {{-- temps de marche --}}              
                         <label for="temps" class="col-md-4 control-label"> Temps: </label>
                         <div class="col-md-6">
                         <input type="time" class="form-control" id="temps" name="temps" value="{{old('temps',$marches->temps)}}">
@@ -94,19 +98,19 @@
                     </div>
 
                     <div class="form-group row">
-                        {{-- On ajoute un dénivelé --}}              
+                        {{-- dénivelé --}}              
                         <label for="denivele" class="col-md-4 control-label"> Dénivelé(en m) </label>
                         <div class="col-md-6">
                         <input type="int" class="form-control" id="denivele" name="denivele" value="{{old('denivele',$marches->denivele)}}">
                         </div>
-                        {{-- On ajoute une distance --}}              
+                        {{-- distance --}}              
                         <label for="distance" class="col-md-4 control-label"> Distance (en m) </label>
                         <div class="col-md-6">
                         <input type="int" class="form-control" id="distance" name="distance" value="{{old('distance',$marches->distance)}}">
                         </div>
                     </div>
 
-                    {{-- On ajoute une description --}}
+                    {{-- description --}}
                     <div class="form-group row"> 
                         <label for="description" class="col-md-4 control-label"> Description: </label>
                         <div class="col-md-6">

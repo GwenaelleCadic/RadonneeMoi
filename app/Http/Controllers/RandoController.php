@@ -75,6 +75,7 @@ class RandoController extends Controller
 	public function searchRando(Request $request)
 	{
 		$countries=Country::all();
+		// Gestion des entrées
 		if($request->region=='none')
 		{
 			if($request->niveau=='none')
@@ -86,8 +87,8 @@ class RandoController extends Controller
 				}
 				else
 				{
-					$marches= Marche::where('type','=',$request->temps)
-					->where('nom','LIKE','%'.$request->search.'%')
+					$marches= Marche::where('type','=',$request->temps);
+					$marches=$marches->where('nom','LIKE','%'.$request->search.'%')
 					->orWhere('description','LIKE','%'.$request->search.'%');
 				}
 			}
@@ -95,15 +96,15 @@ class RandoController extends Controller
 			{
 				if($request->temps=='none')
 				{
-					$marches= Marche::where('niveau','LIKE','%'.$request->niveau.'%')
-						->where('nom','LIKE','%'.$request->search.'%')
-						->orWhere('description','LIKE','%'.$request->search.'%');
+					$marches= Marche::where('niveau','LIKE','%'.$request->niveau.'%');
+					$marches=$marches->where('nom','LIKE','%'.$request->search.'%')
+					->orWhere('description','LIKE','%'.$request->search.'%');
 				}
 				else
 				{
 					$marches= Marche::where('niveau','LIKE','%'.$request->niveau.'%')
-					->where('type','=',$request->temps)
-					->where('nom','LIKE','%'.$request->search.'%')
+					->where('type','=',$request->temps);
+					$marches=$marches->where('nom','LIKE','%'.$request->search.'%')
 					->orWhere('description','LIKE','%'.$request->search.'%');
 				}
 			}
@@ -114,16 +115,17 @@ class RandoController extends Controller
 			{
 				if($request->temps=='none')
 				{
-					$marches= Marche::where('nom','LIKE','%'.$request->search.'%')
-					->orWhere('description','LIKE','%'.$request->search.'%')
-					->orWhere('region_id','=','%'.$request->region.'%');
+					$marches= Marche::where('region_id','=','%'.$request->region.'%');
+					$marches=$marches->where('nom','LIKE','%'.$request->search.'%')
+					->orWhere('description','LIKE','%'.$request->search.'%');
 				}
 				else
 				{
 					$marches= Marche::where('type','=',$request->temps)
-					->where('nom','LIKE','%'.$request->search.'%')
-					->orWhere('description','LIKE','%'.$request->search.'%')
-					->orWhere('region_id','=','%'.$request->region.'%');
+					->where('region_id','=','%'.$request->region.'%');
+					$marches=$marches->where('nom','LIKE','%'.$request->search.'%')
+					->orWhere('description','LIKE','%'.$request->search.'%');
+					
 				}
 			}
 			else
@@ -131,17 +133,19 @@ class RandoController extends Controller
 				if($request->temps=='none')
 				{
 					$marches= Marche::where('niveau','LIKE','%'.$request->niveau.'%')
-					->where('nom','LIKE','%'.$request->search.'%')
-					->orWhere('description','LIKE','%'.$request->search.'%')
-					->orWhere('region_id','=','%'.$request->region.'%');
+					->where('region_id','=','%'.$request->region.'%');
+					$marche=$marche->where('nom','LIKE','%'.$request->search.'%')
+					->orWhere('description','LIKE','%'.$request->search.'%');
+					
 				}
 				else
 				{
 						$marches= Marche::where('niveau','LIKE','%'.$request->niveau.'%')
 						->where('type','=',$request->temps)
-						->where('nom','LIKE','%'.$request->search.'%')
-						->orWhere('description','LIKE','%'.$request->search.'%')
-						->orWhere('region_id','=','%'.$request->region.'%');
+						->where('region_id','=','%'.$request->region.'%');
+						$marches=$marches->where('nom','LIKE','%'.$request->search.'%')
+						->orWhere('description','LIKE','%'.$request->search.'%');
+						
 				}
 			}
 		}
@@ -182,17 +186,14 @@ class RandoController extends Controller
 	public function edit($id)
 	{
 		$marche=Marche::find($id);
-		$country=Country::where('nom','=',$marche->country)->get();
 		$countries=Country::all();
-		return($country);
-		// $regions=Region::where('country_id','=',$country->id)->get();
-		// if($marche){
-		// 	return view('updateRando')->with('marches',$marche)->with('countries',$countries);
-		// 	// ->with('regions',$regions);
-		// }
-		// else{
-		// 	return redirect()->back();
-		// }
+		$regions=Region::where('country_id','=',$marche->region->country_id)->get();
+		if($marche){
+			return view('updateRando')->with('marches',$marche)->with('countries',$countries)->with('regions',$regions);
+		}
+		else{
+			return redirect()->back();
+		}
 	}
 
 	// Enregistrement des modifications faites sur une marche

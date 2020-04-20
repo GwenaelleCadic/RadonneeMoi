@@ -7,6 +7,7 @@
             <div class="col-md-12">
             <div class="newRandoBox">
         {!! Form::open(['action' => 'RandoController@store','method'=>'POST'])!!}
+        {{-- On demande le nom --}}
             <div class="form-group row">
                     <label for="nom" class="col-md-4 control-label"> Comment s'appelle cette marche? </label>
                     <div class="col-md-6">
@@ -14,6 +15,7 @@
                     </div>
                 </div>
 
+                {{-- On demande l'emplacement --}}
             <div class="container">
                 <h2>Et où se trouve cette beautée?</h2>
                 <div class class="form group row">
@@ -32,6 +34,7 @@
                     </select>
                 </div>    
             </div>
+            {{-- gestion des dropdowns --}}
             <script>
                 $(document).ready(function(){
                     $('select[name="country"]').on('change',function(){
@@ -75,7 +78,7 @@
                 });
             </script>
 
-        
+        {{-- On demande le niveau --}}
             <div class="form-group row">
                 <label for="niveau"  class="col-md-4 control-label"> Quel est son niveau ? </label>
                 <div class="button-wrap">

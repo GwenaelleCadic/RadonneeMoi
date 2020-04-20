@@ -37,68 +37,26 @@ class EventsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   $this->validate($request, [
+    {
+        //validation de l'entrée
+        $this->validate($request, [
         'rdv' =>'required',
-    ]);
+        ]);
 
-    //Creation de la Marche à partir des données entrée
-    $flash= new Event;
-    $marche = Marche::find($request->marche_id);
-    $user= User::find($request->user_id);
-    $flash->rdv=$request->rdv;
-    $flash->description=$request->description;
+        //Creation de la Marche à partir des données entrée
+        $flash= new Event;
+        $marche = Marche::find($request->marche_id);
+        $user= User::find($request->user_id);
+        $flash->rdv=$request->rdv;
+        $flash->description=$request->description;
 
-    $flash->marche()->associate($marche);
-    $flash->user()->associate($user);
+        $flash->marche()->associate($marche);
+        $flash->user()->associate($user);
 
-    $flash->save();
+        $flash->save();
 
-    $events = Event::all()->sortBy('rdv');
-    return view('events')->with('events',$events);
+        $events = Event::all()->sortBy('rdv');
+        return view('events')->with('events',$events);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

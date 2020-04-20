@@ -270,7 +270,13 @@ h2.contenue {
     border-color: white;
     padding:10px;
 }
-
+.registerBox2
+{
+    border: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: white;
+}
 
 @import "compass/css3";
 
@@ -406,8 +412,8 @@ h2.contenue {
 }
 
 .homeMarche {
-  width: 200px;
-  height: 95%;
+  width: 220px;
+  height: 150px;
   display: inline-block;
   justify-content: center;
   margin: 10px;
@@ -473,7 +479,7 @@ h2.contenue {
 
 .photoProf {
   width: auto;
-  height: 220px;
+  height: 230px;
   float: left;
   margin-right: 25px;
   border-radius: 50%;

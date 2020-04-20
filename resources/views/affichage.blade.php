@@ -75,7 +75,9 @@
                                         <div class="col-md-6">
                                                 <textarea class="form-control" id="body" name="description" rows="3"></textarea>
                                         </div>
-                                        {!! Form::submit('Créer',['class' => 'btn btn-primary']) !!}
+                                        <div>
+                                                {!! Form::submit('Créer',['class' => 'btn btn-primary']) !!}
+                                        </div>
                         {!! Form::close() !!}
                         </div>
                 </div>

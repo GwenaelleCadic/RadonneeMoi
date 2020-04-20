@@ -20,12 +20,10 @@
                     <div class='titreContenueProf'>adresse:</div><a class='contenueProf'>{{ Auth::user()->email }}</a>                      
                     <div class='titreContenueProf'>niveau:</div><a class='contenueProf'>{{ Auth::user()->niveau }}</a>
                     <div class='titreContenueProf'>Lieu:</div><a class='contenueProf'>{{ Auth::user()->region->country->nom}}, {{ Auth::user()->region->nom}}</a>
-                    <div class='titreContenueProf'>groupe:</div><a class='contenueProf'>
-                        @if( Auth::user()->groupe=='true')
-                            mondain
-                        @else
-                            solitaire
-                        @endif</a>
+                    <div class='titreContenueProf'>groupe:</div>
+                        @if( Auth::user()->groupe=='true')<a class='contenueProf'>mondain</a>
+                        @else <a class='contenueProf'>solitaire</a>
+                        @endif
                 </div>
             </div>
             <div class="descrUser">{{Auth::user()->description}}</div> 
@@ -38,7 +36,7 @@
     </div>
                             
     </div>
-    
+    {{-- Affichage des marches/événements rentrant dans les critéres de l'utilisateur --}}
     <h3 class='home'>Cela pourrait vous intéresser :</h3>
     <div class="homeBox2">
         @if(count($events1 ?? '')>0)        
@@ -51,7 +49,8 @@
                     <a class="affichageInfoMarche"><strong class="marron">Distance:</strong> {{$event->marche->distance}} m</a>
                     <a class="affichageInfoMarche"><strong class="marron">Dénivelé:</strong> {{$event->marche->denivele}}m</a>
                     <a class="affichageInfoMarche"><strong class="marron">Niveau:</strong> {{$event->marche->niveau}}</a>
-                    <a class="affichageInfoMarche"><strong class="marron">Lieu:</strong> {{$event->marche->region->country->nom}},{{$event->marche->region->nom}}</a>
+                    <a class="affichageInfoMarche"><strong class="marron">Lieu:</strong> {{$event->marche->region->country->nom}},</a>
+                    <a class="affichageInfoMarche"> {{$event->marche->region->nom}}</a>
                 </div>
             </div>
             @endforeach
@@ -60,6 +59,8 @@
             Malheureusement, rien ne semble sortir du lot pour vous
         @endif
     </div>
+
+    {{-- Affichage des marches créées par l'utilisateur --}}
     <h3 class='home'>Marches que vous avez proposées :</h3>
     <div class="homeBox2">
         @if(count($marches ?? '')>0)  
@@ -72,7 +73,8 @@
                         <a class="affichageInfoMarche"><strong class="marron">Distance:</strong> {{$marche->distance}} m</a>
                         <a class="affichageInfoMarche"><strong class="marron">Dénivelé:</strong> {{$marche->denivele}}m</a>
                         <a class="affichageInfoMarche"><strong class="marron">Niveau:</strong> {{$marche->niveau}}</a>
-                        <a class="affichageInfoMarche"><strong class="marron">Lieu:</strong> {{$marche->region->country->nom}},{{$marche->region->nom}}</a>
+                        <a class="affichageInfoMarche"><strong class="marron">Lieu:</strong> {{$marche->region->country->nom}},</a>
+                        <a class="affichageInfoMarche">  {{$marche->region->nom}}</a>
                     </div>
                 </div>                            
             @endforeach
@@ -82,6 +84,7 @@
 
     </div>
 
+    {{-- Affichage des événements créé par l'utilisateur --}}
     <h3 class='home'>Events que vous avez proposés :</h3>
     <div class="homeBox2">
         @if(count($events2 ?? '')>0)  
@@ -94,7 +97,8 @@
                         <a class="affichageInfoMarche"><strong class="marron">Distance:</strong> {{$event->marche->distance}} m</a>
                         <a class="affichageInfoMarche"><strong class="marron">Dénivelé:</strong> {{$event->marche->denivele}}m</a>
                         <a class="affichageInfoMarche"><strong class="marron">Niveau:</strong> {{$event->marche->niveau}}</a>
-                        <a class="affichageInfoMarche"><strong class="marron">Région:</strong> {{$event->marche->region}}</a>
+                        <a class="affichageInfoMarche"><strong class="marron">Lieu:</strong> {{$event->marche->region->country->nom}},</a>
+                        <a class="affichageInfoMarche"> {{$event->marche->region->nom}}</a>
                     </div>
                 </div>                           
             @endforeach
@@ -103,6 +107,7 @@
         @endif
     </div>
 
+    {{-- Affichage des marches enregisrées dans l'historique --}}
     <h3 class='home'>Marches que vous avez enregistrées :</h3>
     <div class="homeBox2">
         @if(count($historiques ?? '')>0)  
@@ -115,7 +120,8 @@
                         <a class="affichageInfoMarche"><strong class="marron">Distance:</strong> {{$historique->marche->distance}} m</a>
                         <a class="affichageInfoMarche"><strong class="marron">Dénivelé:</strong> {{$historique->marche->denivele}}m</a>
                         <a class="affichageInfoMarche"><strong class="marron">Niveau:</strong> {{$historique->marche->niveau}}</a>
-                        <a class="affichageInfoMarche"><strong class="marron">Lieu:</strong> {{$historique->marche->country}},{{$historique->marche->region}}</a>
+                        <a class="affichageInfoMarche"><strong class="marron">Lieu:</strong> {{$historique->marche->country}},</a>
+                        <a class="affichageInfoMarche"> {{$historique->marche->region}}</a>
                     </div>
                 </div>                           
             @endforeach

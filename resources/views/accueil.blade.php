@@ -5,6 +5,7 @@
 <h1 class="titreAccueil"> Voici ce que nous avons à vous proposer </h1>
 <div class="accueilContainer">
     @if(count($marches ?? '')>0)
+    {{-- Affichage de toutes les marches disponibles, sans traitement --}}
             @foreach($marches ?? '' as $marche)
             <div class="marche">
                 <div class="marcheHaut">

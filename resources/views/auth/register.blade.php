@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="registerBox">
+                <div class="registerBox2">
                     <div class="connexionTitre">Inscription <small>    (bienvenue chez nous)</small></div>
                     
                     <div class="card-body">
@@ -83,7 +83,7 @@
                                     <label for="bvert" class="button-label bvert">Vert</label>
                                 </div> 
                            </div>
-
+                           {{-- On demande les préférence de groupe --}}
                             <div class="form-group row">
                                 <label for="groupe" class="col-md-4 control-label"> Aimez-vous marcher en groupe ? </label>
                                 <div class="col-md-6">
@@ -94,7 +94,7 @@
                                     <label for="false">Non</label>
                                 </div>
                             </div>
-                                
+                                {{-- Le lieu d'origine (ou du moins le lieu où ils veulent marher) --}}
                                 <div class="container">
                                     <h2>D'où venez-vous?</h2>
                                     <div class class="form group row">
@@ -112,6 +112,7 @@
                                         </select>
                                     </div>    
                                 </div>
+                                {{-- Gestion de l'affichage des régions en fonction du pays --}}
                                 <script>
                                     $(document).ready(function(){
                                         $('select[name="country"]').on('change',function(){

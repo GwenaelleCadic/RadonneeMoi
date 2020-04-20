@@ -103,6 +103,7 @@
                     <label for="country"> Pays</label>
                     <select name="country" id="country" class="form-control">
                         <option value="">Pays</option>
+                        {{-- Affichage du pays déja existent --}}
                         @foreach($countries as $country)
                             @if(Auth::user()->region->country_id==$country->id)
                                 <option value="{{$country->id}}" selected>{{$country->nom}}</option>
@@ -117,6 +118,7 @@
                     <select name="region" id="region" class="form-control">
                         <option value="">Region</option>
                         @foreach($regions as $region)
+                        {{-- Affichage de la région déja existente --}}
                         @if($region->id==Auth::user()->region_id)
                             <option value="{{$region->id}}" selected>{{$region->nom}}</option>
                         @else

@@ -2,12 +2,12 @@
 @extends('layouts.app')
 
 @section('content')
+{{-- On affiche les données (non importantes) de l'utilisateur --}}
 <div>
             <div class="homeBox1">
                 <div class="homeHaut1">                
                     <img src="../uploads/avatars/{{$users->avatar}}" class='photo'>
-                    <h2 class='contenue'>{{$users->name}}</h2>
-                    <a class='contenue'>{{ $users->email }}</a>                      
+                    <h2 class='contenue'>{{$users->name}}</h2>                     
                     <a class='contenue'>{{ $users->niveau }}</a>
                     <a class='contenue'>{{ $users->region->nom }}</a>
                     <a class='contenue'>{{ $users->groupe }}</a>    
@@ -26,11 +26,12 @@
                                     <a class="affichageInfoMarche"><strong class="marron">Niveau:</strong> {{$event->marche->niveau}}</a>
                                     <a class="affichageInfoMarche"><strong class="marron">Lieu:</strong>{{$event->marche->region->country->nom}}, {{$event->marche->region->nom}}</a>
                                 </div>
+                                <div class="descrUser">{{Auth::user()->description}}</div> 
                             </div>
                         @endif
                     @endforeach
                 </div>
-                   
+                   {{-- Les marches que ce dernier a proposées --}}
                 <div class="homeBox2">
                     Marches proposées :
                     @foreach ($marches as $marche)

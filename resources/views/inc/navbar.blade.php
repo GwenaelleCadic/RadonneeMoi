@@ -19,13 +19,14 @@
             @if (Route::has('register'))
                 <ul class="navbar-nav ml-auto">
               <a class="nav-link active" href="{{ asset('rando/') }}">Accueil</a>                
-              <a class="nav-link" href="{{asset('search')}}">Randonnées</a>
+              <a class="nav-link" href="{{asset('search')}}">Recherche</a>
             @endif
+            {{-- Si une personne est connecté, elle a accés aux évènements, et au tracé de nouvelles marche --}}
             @else
              <ul class="navbar-nav ml-auto">
                 <a class="nav-link" href="{{ asset('rando/') }}">Accueil</a>  
                 <a class="nav-link" href="{{ asset('rando/create') }}">Tracer</a>  
-                <a class="nav-link" href="{{asset('search')}}">Randonnées</a>
+                <a class="nav-link" href="{{asset('search')}}">Recherche</a>
                 <a class="nav-link" href="{{asset('events')}}">Evénements</a>
         @endguest
               <!-- Authentication Links -->

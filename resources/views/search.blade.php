@@ -9,6 +9,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="registerBox">
+                {{-- On entre les données de recherche --}}
             {!! Form::open(['route'=>['rando.search'], 'method'=>"POST", 'class'=>'navbar-form navbar-left','role'=>'search'])  !!}
                <div class="input-group custom-search-form">
                    <input type="text" class="form-control" name="search" placeholder="Search...">
@@ -37,10 +38,10 @@
                 <label for='bnone' class="button-label bnone">Peu importe</label>
             </div> 
             <label for="temps"> Le temps? </label>
-            <select id="temps">
-                <option value="dj">Demi-journée</option>
-                <option value="j">Journée</option>
-                <option value="none" selected>Peu importe</option>
+            <select name='temps' id="temps">
+                <option name='temps' value="dj">Demi-journée</option>
+                <option name='temps' value="j">Journée</option>
+                <option name='temps' value="none" selected>Peu importe</option>
             </select>
         </div>
     </div>
@@ -62,8 +63,8 @@
                 </select>
             </div>    
         </div>
+        {{-- Gestion des dropdown --}}
         <script>
-   
             $(document).ready(function(){
                 $('select[name="country"]').on('change',function(){
                     var country_id=$(this).val();
@@ -97,6 +98,7 @@
     </div>
 </div>       
 <div>
+    {{-- Affichage des réponses --}}
             @if(count($marches ?? '')>0)
                 @foreach ($marches as $marche)
                 <div class="marche">
