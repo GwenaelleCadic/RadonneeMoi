@@ -136,8 +136,8 @@
                         <a class="affichageInfoMarche"><strong class="marron">Distance:</strong> {{$historique->marche->distance}} m</a>
                         <a class="affichageInfoMarche"><strong class="marron">Dénivelé:</strong> {{$historique->marche->denivele}}m</a>
                         <a class="affichageInfoMarche"><strong class="marron">Niveau:</strong> {{$historique->marche->niveau}}</a>
-                        <a class="affichageInfoMarche"><strong class="marron">Lieu:</strong> {{$historique->marche->country}},</a>
-                        <a class="affichageInfoMarche"> {{$historique->marche->region}}</a>
+                        <a class="affichageInfoMarche"><strong class="marron">Lieu:</strong> {{$historique->marche->country->nom}},</a>
+                        <a class="affichageInfoMarche"> {{$historique->marche->region->nom}}</a>
                     </div>
                 </div>                           
             @endforeach
