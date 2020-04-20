@@ -44,7 +44,7 @@
                 @foreach($events1 as $event)
                 <div class="homeMarche">
                     <div class="homeMarcheTitre">
-                        <a href="rando/{{$event->marche_id}}" class='vert'>{{$event->marche->nom}}</a>
+                        <a href="../../rando/{{$event->marche_id}}" class='vert'>{{$event->marche->nom}}</a>
                     </div>
                     <div class="presentation">
                         <a class="affichageInfoMarche"><strong class="marron">Distance:</strong> {{$event->marche->distance}} m</a>
@@ -59,7 +59,7 @@
                 @foreach($events1 as $event)
                         <div class="homeMarche">
                             <div class="homeMarcheTitre">
-                                <a href="rando/{{$event->id}}" class='vert'>{{$event->nom}}</a>
+                                <a href="../../rando/{{$event->id}}" class='vert'>{{$event->nom}}</a>
                             </div>
                             <div class="presentation">
                                 <a class="affichageInfoMarche"><strong class="marron">Distance:</strong> {{$event->distance}} m</a>
@@ -83,7 +83,7 @@
             @foreach ($marches as $marche)
                 <div class="homeMarche">
                     <div class="homeMarcheTitre">
-                        <a href="rando/{{$marche->id}}" class='vert'>{{$marche->nom}}</a>
+                        <a href="../../rando/{{$marche->id}}" class='vert'>{{$marche->nom}}</a>
                     </div>
                     <div class="presentation">
                         <a class="affichageInfoMarche"><strong class="marron">Distance:</strong> {{$marche->distance}} m</a>
@@ -107,7 +107,7 @@
             @foreach ($events2 as $event)
                 <div class="homeMarche">
                     <div class="homeMarcheTitre">
-                        <a href="rando/{{$event->marche->id}}" class='vert'>{{$event->marche->nom}}</a>
+                        <a href="../../rando/{{$event->marche->id}}" class='vert'>{{$event->marche->nom}}</a>
                     </div>
                     <div class="presentation">
                         <a class="affichageInfoMarche"><strong class="marron">Distance:</strong> {{$event->marche->distance}} m</a>
@@ -130,7 +130,7 @@
             @foreach ($historiques as $historique)
                 <div class="homeMarche">
                     <div class="homeMarcheTitre">
-                        <a href="rando/{{$historique->marche->id}}" class='vert'>{{$historique->marche->nom}}</a>
+                        <a href="../../rando/{{$historique->marche->id}}" class='vert'>{{$historique->marche->nom}}</a>
                     </div>
                     <div class="presentation">
                         <a class="affichageInfoMarche"><strong class="marron">Distance:</strong> {{$historique->marche->distance}} m</a>
