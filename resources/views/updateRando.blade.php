@@ -114,7 +114,7 @@
                     <div class="form-group row"> 
                         <label for="description" class="col-md-4 control-label"> Description: </label>
                         <div class="col-md-6">
-                        <textarea type="textarea" class="form-control" id="description" name="description" cols="70" rows="3" value="{{old('description',$marches->description)}}"></textarea>
+                            <textarea type="textarea" class="form-control" id="description" name="description" cols="70" rows="3">{{old('description',$marches->description)}}</textarea>
                         </div>
                     </div>
                     <input type="hidden" name="id" id="id" value={{$marches->id}} />

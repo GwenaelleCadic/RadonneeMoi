@@ -177,7 +177,7 @@
             <div class="form-group row"> 
                 <label for="description" class="col-md-4 control-label"> Description: </label>
                 <div class="col-md-6">
-                    <textarea style="border: none transparent;" class="form-control" id="description" name="description" value="{{ old('region',$user->description) }}" cols="70" rows="3"></textarea>
+                    <textarea style="border: none transparent;" class="form-control" id="description" name="description" cols="70" rows="3">{{ old('region',$user->description) }}</textarea>
                 </div>
             </div>
 

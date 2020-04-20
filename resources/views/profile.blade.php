@@ -24,7 +24,8 @@
                                     <a class="affichageInfoMarche"><strong class="marron">Distance:</strong> {{$event->marche->distance}} m</a>
                                     <a class="affichageInfoMarche"><strong class="marron">Dénivelé:</strong> {{$event->marche->denivele}}m</a>
                                     <a class="affichageInfoMarche"><strong class="marron">Niveau:</strong> {{$event->marche->niveau}}</a>
-                                    <a class="affichageInfoMarche"><strong class="marron">Lieu:</strong>{{$event->marche->region->country->nom}}, {{$event->marche->region->nom}}</a>
+                                    <a class="affichageInfoMarche"><strong class="marron">Lieu:</strong>{{$event->marche->region->country->nom}},</a>
+                                    <a class="affichageInfoMarche">{{$event->marche->region->nom}}</a>
                                 </div>
                                 <div class="descrUser">{{Auth::user()->description}}</div> 
                             </div>
@@ -44,7 +45,8 @@
                                     <a class="affichageInfoMarche"><strong class="marron">Distance:</strong> {{$marche->distance}} m</a>
                                     <a class="affichageInfoMarche"><strong class="marron">Dénivelé:</strong> {{$marche->denivele}}m</a>
                                     <a class="affichageInfoMarche"><strong class="marron">Niveau:</strong> {{$marche->niveau}}</a>
-                                    <a class="affichageInfoMarche"><strong class="marron">Lieu:</strong> {{$marche->region->country->nom}}, {{$marche->region->nom}}</a>
+                                    <a class="affichageInfoMarche"><strong class="marron">Lieu:</strong> {{$marche->region->country->nom}},</a>
+                                    <a class="affichageInfoMarche">{{$marche->region->nom}}</a>
                                 </div>
                             </div>
                         @endif                            
