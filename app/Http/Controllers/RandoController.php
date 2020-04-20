@@ -76,7 +76,7 @@ class RandoController extends Controller
 	{
 		$countries=Country::all();
 		// Gestion des entrées
-		if($request->region=='none')
+		if($request->region=='none'|| $request->region=='')
 		{
 			if($request->niveau=='none')
 			{
