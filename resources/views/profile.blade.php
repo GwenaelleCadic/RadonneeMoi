@@ -40,7 +40,7 @@
                         @if($marche->user_id==$users->id)
                             <div class="homeMarche">
                                 <div class="homeMarcheTitre">
-                                    <a href="rando/{{$marche->id}}" class='vert'>{{$marche->nom}}</a>
+                                    <a href="../rando/{{$marche->id}}" class='vert'>{{$marche->nom}}</a>
                                 </div>
                                 <div class="presentation">
                                     <a class="affichageInfoMarche"><strong class="marron">Distance:</strong> {{$marche->distance}} m</a>
